@@ -85,7 +85,7 @@
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Status Pernikahan</label>
                   <select class="form-control" name="id_pernikahan" value="{{ old('id_pernikahan') }}">
-                    <option selected>pilih status</option>
+                    <option value="" selected>pilih status</option>
                     <option value="1">Lajang</option>
                     <option value="2">Menikah</option>
                     <option value="3">Duda</option>
@@ -108,9 +108,6 @@
     </div>
 
 </div>
-<form>
-
-  </form>
 @endsection
 <script>
 function myFunction() {

@@ -86,8 +86,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        // User::update($user->id, $request->all());
-
         User::where('id', $user->id)->update([
             'name' => $request->name,
             'password' => bcrypt($request->password),
