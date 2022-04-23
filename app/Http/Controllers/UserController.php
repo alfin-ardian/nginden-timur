@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Dapukan;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -15,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         return view('admin.user.index', [
-            'users' => User::all()
+            'users' => User::with(['dapukannya'])->get()
         ]);
     }
 
@@ -58,7 +59,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.user.show', [
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
@@ -71,7 +72,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view('admin.user.edit', [
-            'user' => $user
+            'user' => $user,
+            'dapukan' => Dapukan::all()
         ]);
     }
 

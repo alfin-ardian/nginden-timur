@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('wa');
             $table->string('foto')->nullable();
-            $table->char('jenis_kelamin')->nullable();
+            $table->char('jenis_kelamin', 1)->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();

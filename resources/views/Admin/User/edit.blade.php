@@ -3,9 +3,10 @@
 @section('container')
 <div class="container-fluid">
 
+    {{-- {{ dd($dapukan) }} --}}
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Dashboard User</h1>
-
+{{-- {{ dd($user) }} --}}
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
@@ -19,6 +20,7 @@
                   <label class="form-label">Nama</label>
                   <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }} ">
                   <input type="hidden" class="form-control" name="password" value="{{ old('password',$user->password) }} ">
+                  <input type="hidden" class="form-control" name="id_role" value="2">
                 </div>
                 <div class="col-md-6">
                   <label class="form-label">Jenis Kelamin</label>
@@ -74,13 +76,14 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputEmail4" class="form-label">Dapukan</label>
-                  <select class="form-control" name="id_role" required>
-                    <option value="1">Imam</option>
-                    <option value="2">Wakil</option>
-                    <option value="3">K.U.</option>
-                    <option value="4">Penerobos</option>
-                    <option value="5">Mubalight</option>
-                    <option value="6">Rokyah</option>
+                  <select class="form-control" name="id_dapukan" required>
+                    @foreach ($dapukan as $data)
+                    @if(old('id_dapukan',$user->id_dapukan) == $data->id_dapukan)
+                    <option value="{{ $data->id_dapukan }}" selected>{{ $data->nama }}</option>
+                    @else
+                    <option value="{{ $data->id_dapukan }}">{{ $data->nama }}</option>
+                    @endif
+                    @endforeach
                   </select>
                 </div>
                 <div class="col-md-6 mt-3">

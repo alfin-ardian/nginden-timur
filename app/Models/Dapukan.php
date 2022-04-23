@@ -12,4 +12,10 @@ class Dapukan extends Model
     protected $guarded = ['id_dapukan'];
 
     protected $primaryKey = 'id_dapukan';
+
+
+    // public function user()
+    // {
+    //     return $this->hasMany(User::class, ['id_user' => 'id']);
+    // }
 }

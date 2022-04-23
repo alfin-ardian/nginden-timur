@@ -21,6 +21,8 @@ class User extends Authenticatable
 
     protected $guarded = ['id'];
 
+    // protected $with = ['dapukan'];
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -43,5 +45,10 @@ class User extends Authenticatable
     public function age()
     {
         return Carbon::parse($this->attributes['tanggal_lahir'])->age;
+    }
+
+    public function dapukannya()
+    {
+        return $this->hasOne(Dapukan::class, 'id_dapukan', 'id_dapukan');
     }
 }
