@@ -15,16 +15,15 @@
                 <div class="col-md-6">
                   <label class="form-label">Nama</label>
                   <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }} ">
-                  <input type="hidden" class="form-control" name="password" value="{{ old('password',$user->password) }} ">
-                  <input type="hidden" class="form-control" name="id_role" value="2">
+                  <input type="hidden" class="form-control" name="id_role" value="4">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Password <a href="#" onclick="return myFunction()">lihat</a></label>
-                    <input type="password" id="myInput" class="form-control" name="password" value="{{ old('password') }}">
+                    <input type="password" id="myInput" class="form-control" name="password" value="{{ old('password',$user->password) }}" required>
                 </div>
                 <div class="col-md-6 mt-3">
                     <label class="form-label">WA</label>
-                    <input type="text" class="form-control" name="wa" value="{{ old('wa',$user->wa) }} ">
+                    <input type="text" class="form-control" name="wa" value="{{ old('wa',$user->wa) }}" required>
                   </div>
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Email</label>
@@ -68,7 +67,7 @@
                   </select>
                 </div>
                 <div class="col-md-6 mt-3">
-                  <label for="inputPassword4" class="form-label">Status</label>
+                  <label class="form-label">Status</label>
                   <select class="form-control" name="status">
                     <option value="" selected>pilih Status</option>
                     <option value="H">Hidup</option>
@@ -89,7 +88,7 @@
                   </select>
                 </div>
                 <div class="col-md-6 mt-3">
-                  <label for="inputPassword4" class="form-label">Status Pernikahan</label>
+                  <label class="form-label">Status Pernikahan</label>
                   <select class="form-control" name="status_pernikahan">
                     <option value="" selected>pilih status pernikahan</option>
                     <option value="lajang">Lajang</option>

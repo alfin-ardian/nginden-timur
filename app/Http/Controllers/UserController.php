@@ -90,7 +90,7 @@ class UserController extends Controller
 
         User::where('id', $user->id)->update([
             'name' => $request->name,
-            'password' => $request->password,
+            'password' => bcrypt($request->password),
             'wa' => $request->wa,
             'email' => $request->email,
             'jenis_kelamin' => $request->jenis_kelamin,
