@@ -34,16 +34,16 @@
             <span>Dapukan</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/pernikahan*') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="/admin/pernikahan">
+    <li class="nav-item {{ Request::is('admin/jadwal*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/jadwal">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Status Pernikahan</span>
+            <span>Jadwal</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/dapukan*') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="/admin/dapukan">
+    <li class="nav-item {{ Request::is('admin/absensi*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/absensi">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Dapukan</span>
+            <span>Laporan Absensi</span>
         </a>
     </li>
 
