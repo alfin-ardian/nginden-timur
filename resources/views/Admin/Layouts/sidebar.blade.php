@@ -30,11 +30,10 @@
     </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-            aria-expanded="true" aria-controls="collapseUtilities">
+    <li class="nav-item {{ Request::is('admin/dapukan*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/dapukan">
             <i class="fas fa-fw fa-wrench"></i>
-            <span>Utilities</span>
+            <span>Dapukan</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DapukanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,5 @@ Route::get('/admin', function () {
 });
 
 Route::resource('/admin/user', UserController::class);
+
+Route::resource('/admin/dapukan', DapukanController::class);
