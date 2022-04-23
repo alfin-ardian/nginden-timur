@@ -130,11 +130,34 @@ use Illuminate\Support\Carbon;
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <h4 class="font-weight-bold">Nama Sambung : </h4>
-                    <h4 class="font-weight-bold">Pengajar Pertama : Ust. Dendy</h4>
-                    <h4 class="font-weight-bold">Materi Pertama : Q.S : Albaqoroh ayat 1-2</h4>
-                    <h4 class="font-weight-bold">Tempat : </h4>
-                    <h4 class="font-weight-bold">Waktu : 20.00 - 21.00</h4>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Nama</div>
+                            Sambung Kelompok
+                          </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                            <div class="fw-bold">Pengajar & Materi</div>
+                            Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
+                            Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
+                            Ust. Dendy : Q.S Al-baqoroh 1-5
+                          </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                          <div class="fw-bold">Tempat </div>
+                            Masjid Nginden Timur
+                          </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                          <div class="ms-2 me-auto">
+                          <div class="fw-bold">Waktu </div>
+                            20.00 - 21.00
+                          </div>
+                        </li>
+                      </ol>
                 </div>
             </div>
         </div>
@@ -210,32 +233,34 @@ use Illuminate\Support\Carbon;
                                     <th>Keterangan</th>
                                     <th>Waktu Absen</th>
                                     <th>Tempat</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
-                            {{-- <tbody>
-                                @foreach ($jadwals as $jadwal)
+                            <tbody>
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $jadwal->nama_sambung }}</td>
-                                    <td>{{ $jadwal->tanggal() }}</td>
-                                    <td>{{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai}}</td>
-                                    <td>{{ $jadwal->tempat}}</td>
-                                    <td>{{ $jadwal->peserta}}</td>
-                                    <td>
-                                        <a href="/admin/jadwal/{{ $jadwal->id }}" class="btn btn-outline-primary"><i class="bi bi-eye-fill"></i></a>
-                                        <a href="/admin/jadwal/{{ $jadwal->id }}/edit" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>
-                                        <form action="/admin/jadwal/{{ $jadwal->id }}" method="post" class="d-inline">
-                                          @method('delete')
-                                          @csrf
-                                          <button class="btn btn-outline-danger" onclick="return confirm('Anda yakin ingin hapus?')">
-                                            <i class="bi bi-trash"></i>
-                                          </button>
-                                        </form>
-                                    </td>
+                                    <td>1</td>
+                                    <td>Alfin</td>
+                                    <td>Hadir</td>
+                                    <td>Offline</td>
+                                    <td>20.10</td>
+                                    <td>masjid</td>
                                 </tr>
-                                @endforeach
-                            </tbody> --}}
+                                <tr>
+                                    <td>2</td>
+                                    <td>Ekit</td>
+                                    <td>Ijin</td>
+                                    <td>Lembur Kerja</td>
+                                    <td>20.10</td>
+                                    <td>rumah</td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Dendy</td>
+                                    <td>Sakit</td>
+                                    <td>Demam</td>
+                                    <td>20.10</td>
+                                    <td>rumah</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
