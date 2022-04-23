@@ -37,7 +37,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'password' => 'required|max:255',
+            'wa' => 'required'
+        ]);
+
+        $validatedData['password'] = bcrypt($validatedData['password']);
+
+        User::create($validatedData);
+        return redirect('/admin/user')->with('success', 'Berhasil menambah Data');
     }
 
     /**
@@ -48,7 +57,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('admin.user.show', [
+            'user' => $user
+        ]);
     }
 
     /**
@@ -93,9 +104,6 @@ class UserController extends Controller
             'id_pernikahan' => $request->id_pernikahan
         ]);
 
-        // Post::where('id', $post->id)
-        // ->update($validatedData);
-
         return redirect('/admin/user')->with('success', 'Berhasil mengupdate Data');
     }
 
@@ -107,6 +115,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        User::destroy($user->id);
+
+        return redirect('/admin/user')->with('success', 'Berhasil menghapus user');
     }
 }
