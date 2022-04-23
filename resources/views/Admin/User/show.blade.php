@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputPassword4" class="form-label">Status</label>
-                  <input type="text" class="form-control" name="status" value="{{ old('status',$user->status) }}" disabled>
+                  <input type="text" class="form-control" name="status" value="{{ $user->status == 'H' ? 'Hidup' : 'Meninggal' }}" disabled>
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputEmail4" class="form-label">Dapukan</label>
@@ -52,15 +52,15 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputPassword4" class="form-label">Status Pernikahan</label>
-                  <input type="text" class="form-control" name="status" value="{{ old('status',$user->status) }}" disabled>
+                  <input type="text" class="form-control" name="status_pernikahan" value="{{ $user->status_pernikahan }}" disabled>
                 </div>
                 <div class="col-12 mt-3">
                   <label class="form-label">Pekerjaan</label>
-                  <input type="text" class="form-control" placeholder="silakan isi pekerjaan" name="pekerjaan" value="{{ old('pekerjaan',$user->pekerjaan) }}" disabled>
+                  <input type="text" class="form-control" name="pekerjaan" value="{{ old('pekerjaan',$user->pekerjaan) }}" disabled>
                 </div>
                 <div class="col-12 mt-3">
                   <label for="inputAddress" class="form-label">Alamat</label>
-                  <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="alamat" value="{{ old('alamat',$user->alamat) }}" disabled>
+                  <input type="text" class="form-control" id="inputAddress" name="alamat" value="{{ old('alamat',$user->alamat) }}" disabled>
                 </div>
               </form>
         </div>

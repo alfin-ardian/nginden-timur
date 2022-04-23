@@ -103,7 +103,7 @@ class UserController extends Controller
             'status' => $request->status,
             'id_role' => $request->id_role,
             'id_dapukan' => $request->id_dapukan,
-            'id_pernikahan' => $request->id_pernikahan
+            'status_pernikahan' => $request->status_pernikahan
         ]);
 
         return redirect('/admin/user')->with('success', 'Berhasil mengupdate Data');

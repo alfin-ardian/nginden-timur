@@ -2,12 +2,8 @@
 
 @section('container')
 <div class="container-fluid">
-
-    {{-- {{ dd($dapukan) }} --}}
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Dashboard User</h1>
-{{-- {{ dd($user) }} --}}
-    <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <button type="button" class="btn btn-outline-primary"><a href="/admin/user" class="text-decoration-none"><i class="bi bi-arrow-left"></i>Kembali</a></button>
@@ -23,20 +19,25 @@
                   <input type="hidden" class="form-control" name="id_role" value="2">
                 </div>
                 <div class="col-md-6">
-                  <label class="form-label">Jenis Kelamin</label>
-                  <select class="form-control" name="jenis_kelamin">
-                    <option value="L">Laki-Laki</option>
-                    <option value="P">Perempuan</option>
-                  </select>
+                    <label class="form-label">Password <a href="#" onclick="return myFunction()">lihat</a></label>
+                    <input type="password" id="myInput" class="form-control" name="password" value="{{ old('password') }}">
                 </div>
+                <div class="col-md-6 mt-3">
+                    <label class="form-label">WA</label>
+                    <input type="text" class="form-control" name="wa" value="{{ old('wa',$user->wa) }} ">
+                  </div>
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Email</label>
                   <input type="email" class="form-control" name="email" value="{{ old('email',$user->email) }} ">
                 </div>
                 <div class="col-md-6 mt-3">
-                  <label class="form-label">WA</label>
-                  <input type="text" class="form-control" name="wa" value="{{ old('wa',$user->wa) }} ">
-                </div>
+                    <label class="form-label">Jenis Kelamin</label>
+                    <select class="form-control" name="jenis_kelamin">
+                      <option value="" selected>pilih gender</option>
+                      <option value="L">Laki-Laki</option>
+                      <option value="P">Perempuan</option>
+                    </select>
+                  </div>
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Tempat Lahir</label>
                   <input type="text" class="form-control" name="tempat_lahir" value="{{ old('tempat_lahir',$user->tempat_lahir) }}">
@@ -52,24 +53,24 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Pendidikan</label>
-                  <select class="form-control" aria-label="Default select example">
-                    <option selected>pilih Pendidikan</option>
-                    <option value="L">SD</option>
-                    <option value="P">SMP</option>
-                    <option value="P">SMA</option>
-                    <option value="P">D1</option>
-                    <option value="P">D2</option>
-                    <option value="P">D3</option>
-                    <option value="P">D4</option>
-                    <option value="P">S1</option>
-                    <option value="P">S2</option>
-                    <option value="P">S3</option>
+                  <select class="form-control" name="pendidikan">
+                    <option selected>pilih pendidikan</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA">SMA</option>
+                    <option value="D1">D1</option>
+                    <option value="D2">D2</option>
+                    <option value="D3">D3</option>
+                    <option value="D4">D4</option>
+                    <option value="S1">S1</option>
+                    <option value="S2">S2</option>
+                    <option value="S3">S3</option>
                   </select>
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputPassword4" class="form-label">Status</label>
                   <select class="form-control" name="status">
-                    <option selected>pilih Status</option>
+                    <option value="" selected>pilih Status</option>
                     <option value="H">Hidup</option>
                     <option value="M">Meninggal</option>
                   </select>
@@ -77,6 +78,7 @@
                 <div class="col-md-6 mt-3">
                   <label for="inputEmail4" class="form-label">Dapukan</label>
                   <select class="form-control" name="id_dapukan" required>
+                    <option value="" selected>pilih dapukan</option>
                     @foreach ($dapukan as $data)
                     @if(old('id_dapukan',$user->id_dapukan) == $data->id_dapukan)
                     <option value="{{ $data->id_dapukan }}" selected>{{ $data->nama }}</option>
@@ -88,15 +90,15 @@
                 </div>
                 <div class="col-md-6 mt-3">
                   <label for="inputPassword4" class="form-label">Status Pernikahan</label>
-                  <select class="form-control" aria-label="Default select example">
-                    <option selected>pilih status</option>
-                    <option value="P">Lajang</option>
-                    <option value="L">Menikah</option>
-                    <option value="P">Duda</option>
-                    <option value="P">Janda</option>
+                  <select class="form-control" name="status_pernikahan">
+                    <option value="" selected>pilih status pernikahan</option>
+                    <option value="lajang">Lajang</option>
+                    <option value="menikah">Menikah</option>
+                    <option value="duda">Duda</option>
+                    <option value="janda">Janda</option>
                   </select>
                 </div>
-                <div class="col-12 mt-3">
+                <div class="col-6 mt-3">
                   <label class="form-label">Pekerjaan</label>
                   <input type="text" class="form-control" placeholder="silakan isi pekerjaan" name="pekerjaan" value="{{ old('pekerjaan',$user->pekerjaan) }} ">
                 </div>
@@ -113,5 +115,15 @@
 
 </div>
 @endsection
+<script>
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+</script>
 
 

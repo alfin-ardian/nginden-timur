@@ -17,6 +17,6 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        Dapukan::factory(10)->create();
+        Dapukan::factory(3)->create();
     }
 }

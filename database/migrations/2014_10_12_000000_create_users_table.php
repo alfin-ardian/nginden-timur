@@ -17,7 +17,6 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->integer('id_role')->default(4);
             $table->integer('id_dapukan')->nullable();
-            $table->integer('id_pernikahan')->nullable();
             $table->string('name');
             $table->string('password');
             $table->string('email')->unique()->nullable();
@@ -27,10 +26,11 @@ class CreateUsersTable extends Migration
             $table->char('jenis_kelamin', 1)->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->string('alamat')->nullable();
+            $table->char('status', 1)->nullable();
+            $table->string('status_pernikahan')->nullable();
             $table->string('pekerjaan')->nullable();
             $table->string('pendidikan')->nullable();
-            $table->char('status')->nullable();
+            $table->string('alamat')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
