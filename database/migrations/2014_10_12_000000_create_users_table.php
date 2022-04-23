@@ -33,7 +33,8 @@ class CreateUsersTable extends Migration
             $table->string('alamat')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            $table->timestamp('deleted_at')->nullable();
+            $table->softDeletes();
+            $table->timestamp('last_login')->nullable();
         });
     }
 
