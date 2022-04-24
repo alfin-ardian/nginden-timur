@@ -1,6 +1,19 @@
 @extends('admin.layouts.main')
 @section('container')
+<?php
+use Illuminate\Support\Carbon;
+function findTotal($absensi,$ket){
+    $total = 0;
+        foreach($absensi as $data){
+            if($data->presensi == $ket){
+                $total++;
+            }
+        }
+    return $total;
+}
+?>
 <div class="container-fluid">
+    {{-- {{ dd($jadwals) }} --}}
     <h1 class="h3 mb-2 text-gray-800">Dashboard Rekap Sambung</h1>
     <div class="card shadow mb-1">
         <div class="card-body">
@@ -37,46 +50,20 @@
                         <th>Hadir</th>
                         <th>Ijin</th>
                         <th>Sakit</th>
-                        <th>Alfa</th>
-                        {{-- <th>jumlah</th> --}}
+                        <th>Belum Absen</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($jadwals as $jadwal)
                     <tr>
-                        <th>Kelompok</th>
-                        <td>10</td>
-                        <td>4</td>
-                        <td>2</td>
-                        <td>10</td>
+                        <th>{{ $jadwal->nama_sambung }} </th>
+                            {{-- ({{ Carbon::parse($jadwal->tanggal)->translatedFormat('l, d F Y') }}) --}}
+                        <td>{{ findTotal($jadwal->absensi,'H') }}</td>
+                        <td>{{ findTotal($jadwal->absensi,'I') }}</td>
+                        <td>{{ findTotal($jadwal->absensi,'S') }}</td>
+                        <td>{{ findTotal($jadwal->absensi,'') }}</td>
                     </tr>
-                    <tr>
-                        <th>Kelompok</th>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th>Text</th>
-                        <td>5</td>
-                        <td>11</td>
-                        <td>2</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th>Kelompok</th>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <th>Desa</th>
-                        <td>2</td>
-                        <td>0</td>
-                        <td>2</td>
-                        <td>10</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

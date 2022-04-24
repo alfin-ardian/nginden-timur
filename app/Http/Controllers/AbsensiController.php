@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\Jadwal;
 use App\Http\Requests\StoreAbsensiRequest;
 use App\Http\Requests\UpdateAbsensiRequest;
 
@@ -13,11 +14,10 @@ class AbsensiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Absensi $absensi)
+    public function index()
     {
         return view('admin.absensi.index', [
-            'absensis' => $absensi
-            // ->with('user', 'jadwal')->get(),
+            'jadwals' => Jadwal::with('absensi')->get()
         ]);
     }
 

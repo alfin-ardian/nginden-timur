@@ -17,9 +17,9 @@ class CreateAbsensisTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('jadwal_id');
-            $table->char('presensi', 1);
+            $table->char('presensi', 1)->nullable();
             $table->string('keterangan')->nullable();
-            $table->timestamp('waktu_absen');
+            $table->timestamp('waktu_absen')->nullable();
             $table->string('tempat_absen')->nullable();
             $table->timestamps();
         });

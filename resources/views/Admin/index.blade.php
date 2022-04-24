@@ -78,7 +78,7 @@ use Illuminate\Support\Carbon;
                             <i class="fas fa-circle text-warning"></i> Sakit
                         </span>
                         <span class="mr-2">
-                            <i class="fas fa-circle text-danger"></i> Alfa
+                            <i class="fas fa-circle text-danger"></i> Belum Absen
                         </span>
                     </div>
                 </div>
@@ -111,30 +111,16 @@ use Illuminate\Support\Carbon;
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($absensis as $absensi)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Alfin</td>
-                                    <td>Hadir</td>
-                                    <td>Offline</td>
-                                    <td>20.10</td>
-                                    <td>masjid</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $absensi->user['name'] }}</td>
+                                    <td>{{ $absensi->presensi }}</td>
+                                    <td>{{ $absensi->keterangan }}</td>
+                                    <td>{{ $absensi->waktu_absen }}</td>
+                                    <td>{{ $absensi->tempat_absen }}</td>
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Ekit</td>
-                                    <td>Ijin</td>
-                                    <td>Lembur Kerja</td>
-                                    <td>20.10</td>
-                                    <td>rumah</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Dendy</td>
-                                    <td>Sakit</td>
-                                    <td>Demam</td>
-                                    <td>20.10</td>
-                                    <td>rumah</td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

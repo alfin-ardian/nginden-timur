@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use App\Models\Absensi;
+use App\Models\Dapukan;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -50,5 +52,10 @@ class User extends Authenticatable
     public function dapukannya()
     {
         return $this->hasOne(Dapukan::class, 'id_dapukan', 'id_dapukan');
+    }
+
+    public function absensis()
+    {
+        return $this->hasMany(Absensi::class, 'user_id', 'id');
     }
 }

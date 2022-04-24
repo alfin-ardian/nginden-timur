@@ -6,6 +6,9 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 
+
+use App\Models\Absensi;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +25,9 @@ Route::get('/', function () {
 });
 
 Route::get('/admin', function () {
-    return view('admin.index');
+    return view('admin.index', [
+        'absensis' => Absensi::with('user')->get(),
+    ]);
 });
 
 Route::resource('/admin/user', UserController::class);

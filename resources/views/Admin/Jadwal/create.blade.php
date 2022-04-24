@@ -70,10 +70,10 @@
                     <label for="inputAddress" class="form-label">Jenis Peserta</label>
                     <select class="form-control" name="peserta" value="{{ old('peserta') }}" required>
                         <option value="" selected>pilih jenis peserta</option>
-                        <option value="1">Semua Jamaah</option>
-                        <option value="2">Ibu-Ibu</option>
-                        <option value="3">Pengurus</option>
-                        <option value="4">Muda-Mudi</option>
+                        <option value="all">Semua Jamaah</option>
+                        <option value="ibu">Ibu-Ibu</option>
+                        <option value="pengurus">Pengurus</option>
+                        <option value="remaja">Muda-Mudi</option>
                     </select>
                 </div>
                 <div class="col-12 mt-4">

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Jadwal;
+use App\Models\Absensi;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreJadwalRequest;
 use App\Http\Requests\UpdateJadwalRequest;
@@ -39,7 +41,34 @@ class JadwalController extends Controller
      */
     public function store(Request $request)
     {
-        Jadwal::create($request->all());
+        $jadwal = Jadwal::create($request->all());
+
+        if ($request->peserta == 'all') {
+            $pesertas = User::all();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $jadwal->id
+                ]);
+            }
+        } else if ($request->peserta == 'ibu') {
+            $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
+                ->orWhere('status_pernikahan', 'janda')->get();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $jadwal->id
+                ]);
+            }
+        } else if ($request->peserta == 'remaja') {
+            $pesertas = User::where('status_pernikahan', 'lajang')->get();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $jadwal->id
+                ]);
+            }
+        }
 
         return redirect()->route('jadwal.index')->with('success', 'Jadwal berhasil ditambahkan');
     }
