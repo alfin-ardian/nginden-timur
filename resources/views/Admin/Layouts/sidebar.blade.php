@@ -24,7 +24,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item {{ Request::is('admin/user*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/user">
-            <i class="fas fa-fw fa-cog"></i>
+            <i class="fa-solid fa-user-large"></i>
             <span>User</span>
         </a>
     </li>
@@ -36,31 +36,31 @@
     </li>
     <li class="nav-item {{ Request::is('admin/jadwal*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/jadwal">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-solid fa-calendar-days"></i>
             <span>Jadwal</span>
         </a>
     </li>
     <li class="nav-item {{ Request::is('admin/laporan/absensi*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/laporan/absensi">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-solid fa-print"></i>
             <span>Laporan Absensi</span>
         </a>
     </li>
     <li class="nav-item {{ Request::is('admin/pengumuman*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/pengumuman">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-regular fa-bell"></i>
             <span>Pengumuman</span>
         </a>
     </li>
     <li class="nav-item {{ Request::is('admin/wa*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/wa">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-brands fa-whatsapp"></i>
             <span>Blast WA</span>
         </a>
     </li>
     <li class="nav-item {{ Request::is('admin/email*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/email">
-            <i class="fas fa-fw fa-wrench"></i>
+            <i class="fa-regular fa-envelope"></i>
             <span>Blast Email</span>
         </a>
     </li>
