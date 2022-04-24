@@ -32,9 +32,17 @@
                 <div class="col-md-6 mt-3">
                     <label class="form-label">Jenis Kelamin</label>
                     <select class="form-control" name="jenis_kelamin">
+                      @if($user->jenis_kelamin == 'L')
+                      <option value="L" selected>Laki-Laki</option>
+                      <option value="P">Perempuan</option>
+                      @elseif($user->jenis_kelamin == 'P')
+                      <option value="L">Laki-Laki</option>
+                      <option value="P" selected>Perempuan</option>
+                      @else
                       <option value="" selected>pilih gender</option>
                       <option value="L">Laki-Laki</option>
                       <option value="P">Perempuan</option>
+                      @endif
                     </select>
                   </div>
                 <div class="col-md-6 mt-3">

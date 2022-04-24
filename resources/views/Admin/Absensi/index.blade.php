@@ -46,7 +46,7 @@ function findTotal($absensi,$ket){
             <table class="table table-bordered" width="100%" cellspacing="0" id="datatable">
                 <thead>
                     <tr>
-                        <th>Nama Sambung</th>
+                        <th>Nama</th>
                         <th>Hadir</th>
                         <th>Ijin</th>
                         <th>Sakit</th>
@@ -56,8 +56,7 @@ function findTotal($absensi,$ket){
                 <tbody>
                     @foreach ($jadwals as $jadwal)
                     <tr>
-                        <th>{{ $jadwal->nama_sambung }} </th>
-                            {{-- ({{ Carbon::parse($jadwal->tanggal)->translatedFormat('l, d F Y') }}) --}}
+                        <th>{{ $jadwal->nama_sambung }}</th>
                         <td>{{ findTotal($jadwal->absensi,'H') }}</td>
                         <td>{{ findTotal($jadwal->absensi,'I') }}</td>
                         <td>{{ findTotal($jadwal->absensi,'S') }}</td>

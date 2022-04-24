@@ -43,7 +43,7 @@ class JadwalController extends Controller
     {
         $jadwal = Jadwal::create($request->all());
 
-        if ($request->peserta == 'all') {
+        if ($request->peserta == 'semua-jamaah') {
             $pesertas = User::all();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -51,7 +51,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $jadwal->id
                 ]);
             }
-        } else if ($request->peserta == 'ibu') {
+        } else if ($request->peserta == 'ibu-ibu') {
             $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
                 ->orWhere('status_pernikahan', 'janda')->get();
             foreach ($pesertas as $peserta) {
@@ -60,7 +60,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $jadwal->id
                 ]);
             }
-        } else if ($request->peserta == 'remaja') {
+        } else if ($request->peserta == 'muda-mudi') {
             $pesertas = User::where('status_pernikahan', 'lajang')->get();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -108,7 +108,7 @@ class JadwalController extends Controller
      */
     public function update(Request $request, Jadwal $jadwal)
     {
-        Jadwal::where('id', $jadwal->id)->update([
+        $jadwal = Jadwal::where('id', $jadwal->id)->update([
             'nama_sambung' => $request->nama_sambung,
             'tanggal' => $request->tanggal,
             'jam_mulai' => $request->jam_mulai,
@@ -124,6 +124,33 @@ class JadwalController extends Controller
             'materi_ketiga' => $request->materi_ketiga,
         ]);
 
+        if ($request->peserta == 'semua-jamaah') {
+            $pesertas = User::all();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $request->id
+                ]);
+            }
+        } else if ($request->peserta == 'ibu-ibu') {
+            $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
+                ->orWhere('status_pernikahan', 'janda')->get();
+            die();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $request->id
+                ]);
+            }
+        } else if ($request->peserta == 'muda-mudi') {
+            $pesertas = User::where('status_pernikahan', 'lajang')->get();
+            foreach ($pesertas as $peserta) {
+                Absensi::create([
+                    'user_id' => $peserta->id,
+                    'jadwal_id' => $request->id
+                ]);
+            }
+        }
 
         return redirect('/admin/jadwal')->with('success', 'Berhasil mengupdate Data');
     }

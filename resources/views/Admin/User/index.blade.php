@@ -36,7 +36,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->jenis_kelamin == 'L' ? 'Laki-Laki':'Perempuan' }}</td>
+                            <td>{{ $user->jenis_kelamin == 'L' ? 'Laki-Laki':($user->jenis_kelamin == 'P'?'Perempuan':'') }}</td>
                             <td>{{ $user->age() }}</td>
                             <td>{{ $user->wa }}</td>
                             <td>{{ $user->dapukannya ? $user->dapukannya['nama'] :''}}</td>

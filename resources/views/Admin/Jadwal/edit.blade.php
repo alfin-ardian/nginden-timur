@@ -17,6 +17,7 @@
                 <div class="col-md-6">
                   <label class="form-label">Nama Sambung</label>
                   <input type="text" class="form-control" name="nama_sambung" value="{{ old('nama_sambung',$jadwal->nama_sambung) }}" placeholder="Cth. Sambung Kelompok" required>
+                  <input type="hidden" class="form-control" name="id" value="{{ old('id',$jadwal->id) }}">
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Tanggal</label>
@@ -70,11 +71,11 @@
                 <div class="col-12 mt-3">
                     <label for="inputAddress" class="form-label">Jenis Peserta</label>
                     <select class="form-control" name="peserta" value="{{ old('peserta',$jadwal->peserta) }}" required>
-                        <option value="" selected>pilih jenis peserta</option>
-                        <option value="1">Semua Jamaah</option>
-                        <option value="2">Ibu-Ibu</option>
-                        <option value="3">Pengurus</option>
-                        <option value="4">Muda-Mudi</option>
+                        <option value="" {{ $jadwal->peserta == '' ? 'selected':''}}>pilih jenis peserta</option>
+                        <option value="semua-jamaah" {{ $jadwal->peserta == 'semua-jamaah' ? 'selected':''}}>Semua Jamaah</option>
+                        <option value="ibu-ibu" {{ $jadwal->peserta == 'ibu-ibu' ? 'selected':''}}>Ibu-Ibu</option>
+                        <option value="pengurus" {{ $jadwal->peserta == 'pengurus' ? 'selected':''}}>Pengurus</option>
+                        <option value="muda-mudi" {{ $jadwal->peserta == 'muda-mudi' ? 'selected':''}}>Muda-Mudi</option>
                     </select>
                 </div>
                 <div class="col-12 mt-4">

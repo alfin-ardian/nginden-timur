@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Absensi;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;

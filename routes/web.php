@@ -1,13 +1,14 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Jadwal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
+
+
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
-
-
-use App\Models\Absensi;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,7 @@ Route::get('/', function () {
 
 Route::get('/admin', function () {
     return view('admin.index', [
-        'absensis' => Absensi::with('user')->get(),
+        'jadwal' => Jadwal::with('absensi.user')->where('tanggal', date('Y-m-d'))->first()
     ]);
 });
 

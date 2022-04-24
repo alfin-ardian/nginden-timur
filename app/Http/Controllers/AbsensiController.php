@@ -17,7 +17,7 @@ class AbsensiController extends Controller
     public function index()
     {
         return view('admin.absensi.index', [
-            'jadwals' => Jadwal::with('absensi')->get()
+            'jadwals' => Jadwal::with('absensi')->orderBy('tanggal', 'ASC')->get()
         ]);
     }
 

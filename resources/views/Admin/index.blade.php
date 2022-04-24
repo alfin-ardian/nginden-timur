@@ -5,7 +5,6 @@
 use Illuminate\Support\Carbon;
 ?>
 <div class="container-fluid">
-    <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard Laporan</h1>
         {{-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -25,15 +24,15 @@ use Illuminate\Support\Carbon;
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Nama :</div>
-                            Sambung Kelompok
+                           {{ $jadwal->nama_sambung }}
                           </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Pengajar & Materi :</div>
-                            Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
-                            Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
-                            Ust. Dendy : Q.S Al-baqoroh 1-5
+                            {{ $jadwal->pengajar_pertama }} : {{ $jadwal->materi_pertama }} <br/>
+                            {{ $jadwal->pengajar_kedua }} : {{ $jadwal->materi_kedua }} <br/>
+                            {{ $jadwal->pengajar_ketiga }} : {{ $jadwal->materi_ketiga }} <br/>
                           </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -111,13 +110,13 @@ use Illuminate\Support\Carbon;
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($absensis as $absensi)
+                                @foreach ($jadwal->absensi as $absensi)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $absensi->user['name'] }}</td>
                                     <td>{{ $absensi->presensi }}</td>
                                     <td>{{ $absensi->keterangan }}</td>
-                                    <td>{{ $absensi->waktu_absen }}</td>
+                                    <td>{{ $absensi->waktu_absen ? date('H:i', strtotime($absensi->waktu_absen)) : '' }}  </td>
                                     <td>{{ $absensi->tempat_absen }}</td>
                                 </tr>
                                 @endforeach
