@@ -1,6 +1,7 @@
 @extends('admin.layouts.main')
 
 @section('container')
+{{-- {{ dd($jadwals) }} --}}
 <div class="container-fluid">
     <h1 class="h3 mb-2 text-gray-800">Dashboard Jadwal Sambung</h1>
     <div class="card shadow mb-4">

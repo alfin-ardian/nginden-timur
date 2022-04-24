@@ -17,7 +17,7 @@ class JadwalController extends Controller
     public function index()
     {
         return view('admin.jadwal.index', [
-            'jadwals' => Jadwal::all()
+            'jadwals' => Jadwal::with('absensi')->get()
         ]);
     }
 
