@@ -40,10 +40,28 @@
             <span>Jadwal</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/absensi*') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="/admin/absensi">
+    <li class="nav-item {{ Request::is('admin/laporan/absensi*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/laporan/absensi">
             <i class="fas fa-fw fa-wrench"></i>
             <span>Laporan Absensi</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('admin/pengumuman*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/pengumuman">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Pengumuman</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('admin/wa*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/wa">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Blast WA</span>
+        </a>
+    </li>
+    <li class="nav-item {{ Request::is('admin/email*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/email">
+            <i class="fas fa-fw fa-wrench"></i>
+            <span>Blast Email</span>
         </a>
     </li>
 

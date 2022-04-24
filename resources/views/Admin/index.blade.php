@@ -133,13 +133,13 @@ use Illuminate\Support\Carbon;
                     <ol class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Nama</div>
+                            <div class="fw-bold">Nama :</div>
                             Sambung Kelompok
                           </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                            <div class="fw-bold">Pengajar & Materi</div>
+                            <div class="fw-bold">Pengajar & Materi :</div>
                             Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
                             Ust. Dendy : Q.S Al-baqoroh 1-5 <br/>
                             Ust. Dendy : Q.S Al-baqoroh 1-5
@@ -147,13 +147,13 @@ use Illuminate\Support\Carbon;
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                          <div class="fw-bold">Tempat </div>
+                          <div class="fw-bold">Tempat :</div>
                             Masjid Nginden Timur
                           </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
-                          <div class="fw-bold">Waktu </div>
+                          <div class="fw-bold">Waktu :</div>
                             20.00 - 21.00
                           </div>
                         </li>
