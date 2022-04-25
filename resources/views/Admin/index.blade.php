@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
     </div>
             <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     <div class="row">
+        @if($jadwal != null)
 
         <!-- Area Chart -->
         <div class="col-xl-4 col-lg-7">
@@ -20,6 +21,7 @@ use Illuminate\Support\Carbon;
 
                 <!-- Card Body -->
                 <div class="card-body">
+
                     <ol class="list-group list-group-numbered">
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
@@ -27,6 +29,7 @@ use Illuminate\Support\Carbon;
                            {{ $jadwal->nama_sambung }}
                           </div>
                         </li>
+                        @if(isset($jadwal->pengajar_pertama))
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Pengajar & Materi :</div>
@@ -35,6 +38,7 @@ use Illuminate\Support\Carbon;
                             {{ $jadwal->pengajar_ketiga ? $jadwal->pengajar_ketiga . ' : ' . $jadwal->materi_ketiga : '' }}
                           </div>
                         </li>
+                        @endif
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                           <div class="fw-bold">Tempat :</div>
@@ -57,7 +61,8 @@ use Illuminate\Support\Carbon;
                           </div>
                         </li>
                         @endif
-                      </ol>
+                    </ol>
+
                 </div>
             </div>
         </div>
@@ -131,9 +136,21 @@ use Illuminate\Support\Carbon;
             </div>
         </div>
     </div>
-
+    @else
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="alert alert-primary">
+                <h5>Tidak ada data</h5>
+                <p class="card-text">Belum ada acara untuk hari ini</p>
+                <a href="/admin/jadwal" class="card-link">Buat jadwal</a>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
+@if($jadwal != null)
 <script>
     var jadwals = '{!! json_encode($jadwal->toArray()) !!}';
 </script>
+@endif
 @endsection

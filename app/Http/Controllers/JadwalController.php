@@ -43,7 +43,7 @@ class JadwalController extends Controller
     {
         $jadwal = Jadwal::create($request->all());
 
-        if ($request->peserta == 'semua-jamaah') {
+        if ($request->peserta == 'all') {
             $pesertas = User::all();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -51,7 +51,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $jadwal->id
                 ]);
             }
-        } else if ($request->peserta == 'ibu-ibu') {
+        } else if ($request->peserta == 'ibu') {
             $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
                 ->orWhere('status_pernikahan', 'janda')->get();
             foreach ($pesertas as $peserta) {
@@ -60,7 +60,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $jadwal->id
                 ]);
             }
-        } else if ($request->peserta == 'muda-mudi') {
+        } else if ($request->peserta == 'remaja') {
             $pesertas = User::where('status_pernikahan', 'lajang')->get();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -106,8 +106,11 @@ class JadwalController extends Controller
      * @param  \App\Models\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Jadwal $jadwal)
+    public function update(Request $request, Jadwal $jadwal, Absensi $absensi)
     {
+
+        Absensi::destroy($jadwal->id);
+
         $jadwal = Jadwal::where('id', $jadwal->id)->update([
             'nama_sambung' => $request->nama_sambung,
             'tanggal' => $request->tanggal,
@@ -124,7 +127,7 @@ class JadwalController extends Controller
             'materi_ketiga' => $request->materi_ketiga,
         ]);
 
-        if ($request->peserta == 'semua-jamaah') {
+        if ($request->peserta == 'all') {
             $pesertas = User::all();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -132,7 +135,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $request->id
                 ]);
             }
-        } else if ($request->peserta == 'ibu-ibu') {
+        } else if ($request->peserta == 'ibu') {
             $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
                 ->orWhere('status_pernikahan', 'janda')->get();
             die();
@@ -142,7 +145,7 @@ class JadwalController extends Controller
                     'jadwal_id' => $request->id
                 ]);
             }
-        } else if ($request->peserta == 'muda-mudi') {
+        } else if ($request->peserta == 'remaja') {
             $pesertas = User::where('status_pernikahan', 'lajang')->get();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
@@ -161,8 +164,10 @@ class JadwalController extends Controller
      * @param  \App\Models\Jadwal  $jadwal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Jadwal $jadwal)
+    public function destroy(Jadwal $jadwal, Absensi $absensi)
     {
+        Absensi::destroy($jadwal->id);
+
         Jadwal::destroy($jadwal->id);
 
         return redirect('/admin/jadwal')->with('success', 'Berhasil menghapus jadwal');

@@ -72,7 +72,7 @@
                         <option value="" selected>pilih jenis peserta</option>
                         <option value="all">Semua Jamaah</option>
                         <option value="ibu">Ibu-Ibu</option>
-                        <option value="pengurus">Pengurus</option>
+                        {{-- <option value="pengurus">Pengurus</option> --}}
                         <option value="remaja">Muda-Mudi</option>
                     </select>
                 </div>

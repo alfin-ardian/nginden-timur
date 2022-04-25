@@ -36,7 +36,15 @@
                             <td>{{ $jadwal->tanggal() }}</td>
                             <td>{{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai}}</td>
                             <td>{{ $jadwal->tempat}}</td>
-                            <td>{{ $jadwal->peserta}}</td>
+                            @if($jadwal->peserta == 'all')
+                            <td>Semua Jamaah</td>
+                            @elseif($jadwal->peserta == 'ibu')
+                            <td>Ibu - Ibu</td>
+                            @elseif ($jadwal->peserta == 'pengurus')
+                            <td>Pengurus</td>
+                            @elseif ($jadwal->peserta == 'remaja')
+                            <td>Muda - Mudi</td>
+                            @endif
                             <td>
                                 <a href="/admin/jadwal/{{ $jadwal->id }}" class="btn btn-outline-primary"><i class="bi bi-eye-fill"></i></a>
                                 <a href="/admin/jadwal/{{ $jadwal->id }}/edit" class="btn btn-outline-warning"><i class="bi bi-pencil-square"></i></a>

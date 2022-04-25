@@ -1,6 +1,5 @@
 <?php
 
-use Carbon\Carbon;
 use App\Models\Jadwal;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -9,6 +8,7 @@ use App\Http\Controllers\JadwalController;
 
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
+use App\Http\Controllers\PersonalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,15 +25,23 @@ Route::get('/', function () {
     return view('admin.index');
 });
 
-Route::get('/admin', function () {
-    return view('admin.index', [
-        'jadwal' => Jadwal::with('absensi.user')
-            ->where('tanggal', '2022-04-24')
-            ->first()
-    ]);
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.index', [
+            'jadwal' => Jadwal::with('absensi.user')
+                ->where('tanggal', date('Y-m-d'))
+                ->first()
+        ]);
+    });
+    Route::resource('/user', UserController::class);
+    Route::resource('/dapukan', DapukanController::class);
+    Route::resource('/jadwal', JadwalController::class);
+    Route::resource('/laporan/absensi', AbsensiController::class);
 });
 
-Route::resource('/admin/user', UserController::class);
-Route::resource('/admin/dapukan', DapukanController::class);
-Route::resource('/admin/jadwal', JadwalController::class);
-Route::resource('/admin/laporan/absensi', AbsensiController::class);
+Route::prefix('personal')->group(function () {
+    Route::resource('/', PersonalController::class);
+    Route::get('/riwayat', function () {
+        return view('personal.riwayat');
+    });
+});

@@ -32,15 +32,10 @@ function findTotal($absensi,$ket){
           </div>
         </div>
     </div>
+    @if($jadwals->count() > 0)
 
     <figure class="highcharts-figure">
     <div id="tableChart"></div>
-    {{-- <p class="highcharts-description">
-        Chart showing how an HTML table can be used as the data source for the
-        chart using the Highcharts data module. The chart is built by
-        referencing the existing HTML data table in the page. Several common
-        data source types are available, including CSV and Google Spreadsheet.
-    </p> --}}
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" width="100%" cellspacing="0" id="datatable">
@@ -68,6 +63,15 @@ function findTotal($absensi,$ket){
         </div>
     </div>
     </figure>
+    @else
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <div class="alert alert-primary">
+                <h5>Tidak ada data</h5>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection
 
