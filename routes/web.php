@@ -27,7 +27,9 @@ Route::get('/', function () {
 
 Route::get('/admin', function () {
     return view('admin.index', [
-        'jadwal' => Jadwal::with('absensi.user')->where('tanggal', date('Y-m-d'))->first()
+        'jadwal' => Jadwal::with('absensi.user')
+            ->where('tanggal', '2022-04-24')
+            ->first()
     ]);
 });
 

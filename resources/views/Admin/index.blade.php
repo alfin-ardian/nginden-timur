@@ -30,29 +30,33 @@ use Illuminate\Support\Carbon;
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                             <div class="fw-bold">Pengajar & Materi :</div>
-                            {{ $jadwal->pengajar_pertama }} : {{ $jadwal->materi_pertama }} <br/>
-                            {{ $jadwal->pengajar_kedua }} : {{ $jadwal->materi_kedua }} <br/>
-                            {{ $jadwal->pengajar_ketiga }} : {{ $jadwal->materi_ketiga }} <br/>
+                            {{ $jadwal->pengajar_pertama ? $jadwal->pengajar_pertama . ' : ' . $jadwal->materi_pertama : '' }} <br/>
+                            {{ $jadwal->pengajar_kedua ? $jadwal->pengajar_kedua . ' : ' . $jadwal->materi_kedua : '' }} <br/>
+                            {{ $jadwal->pengajar_ketiga ? $jadwal->pengajar_ketiga . ' : ' . $jadwal->materi_ketiga : '' }}
                           </div>
                         </li>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                           <div class="fw-bold">Tempat :</div>
-                            Masjid Nginden Timur
+                            {{ $jadwal->tempat }}
                           </div>
                         </li>
+                        @if(isset($jadwal->waktu_mulai))
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                           <div class="fw-bold">Waktu :</div>
-                            20.00 - 21.00
+                            {{ $jadwal->waktu_mulai }} - {{ $jadwal->waktu_selesai }}
                           </div>
                         </li>
+                        @endif
+                        @if(isset($jadwal->link))
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                           <div class="ms-2 me-auto">
                           <div class="fw-bold">Link :</div>
-                            www.example.com
+                            {{ $jadwal->link }}
                           </div>
                         </li>
+                        @endif
                       </ol>
                 </div>
             </div>
@@ -129,4 +133,7 @@ use Illuminate\Support\Carbon;
     </div>
 
 </div>
+<script>
+    var jadwals = '{!! json_encode($jadwal->toArray()) !!}';
+</script>
 @endsection
