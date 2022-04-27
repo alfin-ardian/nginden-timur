@@ -82,7 +82,7 @@ class JadwalController extends Controller
     public function show(Jadwal $jadwal)
     {
         return view('admin.jadwal.show', [
-            'jadwal' => $jadwal
+            'jadwal' => $jadwal->with('absensi')->first()
         ]);
     }
 

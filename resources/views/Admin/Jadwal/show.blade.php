@@ -3,7 +3,7 @@
 @section('container')
 <div class="container-fluid">
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Tambah Jadwal Sambung</h1>
+    <h1 class="h3 mb-2 text-gray-800">Detail Jadwal Sambung</h1>
 
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
@@ -15,69 +15,82 @@
                 @method('put')
                 @csrf
                 <div class="col-md-6">
-                  <label class="form-label">Nama Sambung</label>
-                  <input type="text" class="form-control" name="nama_sambung" value="{{ old('nama_sambung',$jadwal->nama_sambung) }}" disabled>
+                  <label class="form-label">Nama Sambung : {{ $jadwal->nama_sambung }} </label>
                 </div>
                 <div class="col-md-6">
-                    <label class="form-label">Tanggal</label>
-                    <div class="input-group date">
-                      <div class="input-group-addon">
-                        <span class="glyphicon glyphicon-th"></span>
-                      </div>
-                      <input type="date" class="form-control datepicker" name="tanggal" value="{{ old('tanggal',$jadwal->tanggal) }}" disabled>
-                    </div>
+                    <label class="form-label">Tanggal : {{ $jadwal->tanggal() }}</label>
                 </div>
                 <div class="col-md-6 mt-3">
-                    <label class="form-label">Waktu Mulai</label>
-                    <input type="time" class="form-control" name="jam_mulai" value="{{ old('jam_mulai',$jadwal->jam_mulai) }}" disabled>
+                    <label class="form-label">Waktu : {{ date('H:i',strtotime($jadwal->jam_mulai)) . '-' . date('H:i',strtotime($jadwal->jam_selesai))}}</label>
                 </div>
                 <div class="col-md-6 mt-3">
-                    <label class="form-label">Waktu Selesai</label>
-                    <input type="time" class="form-control" name="jam_selesai" value="{{ old('jam_selesai',$jadwal->jam_selesai) }}" disabled>
+                    <label class="form-label">Waktu Selesai : {{ $jadwal->jam_selesai }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Pengajar Pertama</label>
-                    <input type="text" class="form-control" name="pengajar_pertama" value="{{ old('pengajar_pertama',$jadwal->pengajar_pertama) }}" disabled>
+                    <label for="inputAddress" class="form-label">Pengajar Pertama : {{ $jadwal->pengajar_pertama }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Materi Pertama</label>
-                    <input type="text" class="form-control" name="materi_pertama" value="{{ old('materi_pertama',$jadwal->materi_pertama) }}" disabled>
+                    <label for="inputAddress" class="form-label">Materi Pertama : {{ $jadwal->materi_pertama }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Pengajar Kedua</label>
-                    <input type="text" class="form-control" name="pengajar_kedua" value="{{ old('pengajar_kedua',$jadwal->pengajar_kedua) }}" disabled>
+                    <label for="inputAddress" class="form-label">Pengajar Kedua : {{ $jadwal->pengajar_kedua }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Materi Kedua</label>
-                    <input type="text" class="form-control" name="materi_kedua" value="{{ old('materi_kedua',$jadwal->materi_kedua) }}" disabled>
+                    <label for="inputAddress" class="form-label">Materi Kedua : {{ $jadwal->materi_kedua }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Pengajar Ketiga</label>
-                    <input type="text" class="form-control" name="pengajar_ketiga" value="{{ old('pengajar_ketiga',$jadwal->pengajar_ketiga) }}" disabled>
+                    <label for="inputAddress" class="form-label">Pengajar Ketiga : {{ $jadwal->pengajar_ketiga }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Materi Ketiga</label>
-                    <input type="text" class="form-control" name="materi_ketiga" value="{{ old('materi_ketiga',$jadwal->materi_ketiga) }}" disabled>
+                    <label for="inputAddress" class="form-label">Materi Ketiga : {{ $jadwal->materi_ketiga }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Tempat</label>
-                    <input type="text" class="form-control" name="tempat" value="{{ old('tempat',$jadwal->tempat) }}" disabled>
+                    <label for="inputAddress" class="form-label">Tempat : {{ $jadwal->tempat }}</label>
                 </div>
                 <div class="col-6 mt-3">
-                    <label for="inputAddress" class="form-label">Link Zoom</label>
-                    <input type="text" class="form-control" name="link" value="{{ old('link',$jadwal->link) }}" disabled>
+                    <label for="inputAddress" class="form-label">Link Zoom : {{ $jadwal->link }}</label>
                 </div>
                 <div class="col-12 mt-3">
-                    <label for="inputAddress" class="form-label">Jenis Peserta</label>
-                    <select class="form-control" name="peserta" value="{{ old('peserta',$jadwal->peserta) }}" disabled>
-                        <option value="" selected>pilih jenis peserta</option>
-                        <option value="1">Semua Jamaah</option>
-                        <option value="2">Ibu-Ibu</option>
-                        <option value="3">Pengurus</option>
-                        <option value="4">Muda-Mudi</option>
-                    </select>
+                    <label for="inputAddress" class="form-label">Jenis Peserta : {{ $jadwal->peserta }}</label>
                 </div>
               </form>
+              <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Absen</a></button>
+              <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Hadir Semua</a></button>
+              <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Kembali</a></button>
+              <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Simpan</a></button>
+              <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama</th>
+                                <th>Presensi</th>
+                                <th>Keterangan</th>
+                                <th>Waktu Absen</th>
+                                <th>Tempat Absen</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($jadwal->absensi as $absensi)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $absensi->user['name'] }}</td>
+                                <td>
+                                    <select class="form-control" name="presensi" value="{{ old('status') }}" id="selection" onchange="changeplh()">
+                                        <option selected value="">pilih presensi</option>
+                                        <option value="H">Hadir</option>
+                                        <option value="I">Izin</option>
+                                        <option value="S">Sakit</option>
+                                    </select>
+                                </td>
+                                <td>{{ $absensi->keterangan }}</td>
+                                <td>{{ $absensi->waktu_absen ? date('H:i', strtotime($absensi->waktu_absen)) : '' }}  </td>
+                                <td>{{ $absensi->tempat_absen }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
         </div>
     </div>
 

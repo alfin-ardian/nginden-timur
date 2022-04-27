@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Jadwal;
+use App\Models\Absensi;
+
 class PersonalController extends Controller
 {
     /**
@@ -11,9 +14,14 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('personal.index');
+        return view('personal.index', [
+            'jadwal' => Jadwal::with(['absensi' => function ($query) {
+                $query->where('user_id', '1');
+            }])->first()
+        ]);
     }
 
     /**
@@ -23,7 +31,11 @@ class PersonalController extends Controller
      */
     public function create()
     {
-        //
+        return view('personal.create', [
+            'jadwal' => Jadwal::with(['absensi' => function ($query) {
+                $query->where('user_id', '1');
+            }])->first()
+        ]);
     }
 
     /**
@@ -32,10 +44,24 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Absensi $absensi)
     {
-        //
+        // return $request;
+        // Absensi::create($request->all());
+        // $absensi->create($request->all());
+        Absensi::create([
+            'presensi' => $request->presensi,
+            'keterangan' => $request->keterangan,
+            'waktu_absen' => date('H:i:s'),
+            'user_id' => $request->user_id,
+            'jadwal_id' => $request->jadwal_id
+        ]);
+
+        return redirect('/personal')->with('success', 'Berhasil Absen');
     }
+    // {
+
+    // }
 
     /**
      * Display the specified resource.
@@ -45,7 +71,11 @@ class PersonalController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('personal.create', [
+            'jadwal' => Jadwal::with(['absensi' => function ($query) {
+                $query->where('user_id', '1');
+            }])->first()
+        ]);
     }
 
     /**
@@ -56,7 +86,11 @@ class PersonalController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('personal.create', [
+            'jadwal' => Jadwal::with(['absensi' => function ($query) {
+                $query->where('user_id', '1');
+            }])->first()
+        ]);
     }
 
     /**
@@ -66,9 +100,18 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Absensi $absensi)
     {
-        //
+        // return $request;
+        Absensi::where('id', $absensi->id)->update([
+            'presensi' => $request->presensi,
+            'keterangan' => $request->keterangan,
+            'waktu_absen' => date('H:i:s'),
+            'user_id' => $request->user_id,
+            'jadwal_id' => $request->jadwal_id
+        ]);
+
+        return redirect('/personal')->with('success', 'Berhasil Absen');
     }
 
     /**

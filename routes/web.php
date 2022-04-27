@@ -1,11 +1,13 @@
 <?php
 
+use App\Models\User;
 use App\Models\Jadwal;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
-
-
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
@@ -43,5 +45,11 @@ Route::prefix('personal')->group(function () {
     Route::resource('/', PersonalController::class);
     Route::get('/riwayat', function () {
         return view('personal.riwayat');
+    });
+    Route::get('/akun', function () {
+        return view('personal.akun', [
+            // 'user' => User::where('id', Auth::user()->id)->first()
+            'user' => User::where('id', 1)->first()
+        ]);
     });
 });

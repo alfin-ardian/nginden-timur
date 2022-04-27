@@ -9,7 +9,7 @@ use Illuminate\Support\Carbon;
         <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
     </div>
     <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
-    {{-- {{ dd($jadwal->absensi) }} --}}
+    {{-- {{ dd($jadwal) }} --}}
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
         {{ session('success') }}
@@ -54,8 +54,8 @@ use Illuminate\Support\Carbon;
             <h5 class="modal-title" id="exampleModalLabel">Absensi Sambung Kelompok</h5>
             </div>
             <div class="modal-body">
-                <form class="row g-3" method="post" action="/personal">
-                    {{-- @method('put') --}}
+                <form class="row g-3" method="post" action="/personal/create/{{ $jadwal->id }}">
+                    @method('put')
                     @csrf
                     <div class="col-md-12">
                         <label class="form-label">Presensi</label>
@@ -84,6 +84,7 @@ use Illuminate\Support\Carbon;
 </div>
 <script>
 function changeplh(){
+    // debugger;
  var sel = document.getElementById("selection");
     var textbx = document.getElementById("textbox");
     var indexe = sel.selectedIndex;
