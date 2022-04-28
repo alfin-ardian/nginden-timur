@@ -10,9 +10,9 @@ function findTotal($absensi,$ket){
         }
     return $total;
 }
-
+$hadir = 0;
 foreach($jadwals as $jadwal){
-$hadir =  (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
+$hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
 ?>
 <div class="container-fluid mb-4 mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

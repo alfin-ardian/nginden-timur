@@ -8,10 +8,12 @@ use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PengumumanController;
 
 /*
@@ -25,9 +27,11 @@ use App\Http\Controllers\PengumumanController;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.index');
-});
+Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -50,7 +54,7 @@ Route::prefix('personal')->group(function () {
         return view('personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
                 return $query->where('user_id', 1)->first();
-            }])
+            }])->whereMonth('created_at', 4)
                 ->get()
         ]);
     });

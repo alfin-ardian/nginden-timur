@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
     </div>
             <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     <div class="row">
+        {{-- {{ dd(Auth::user()) }} --}}
         @if($jadwal != null)
 
         <!-- Area Chart -->
