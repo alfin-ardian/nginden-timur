@@ -52,4 +52,10 @@ Route::prefix('personal')->group(function () {
             'user' => User::where('id', 1)->first()
         ]);
     });
+    Route::get('/pengumuman', function () {
+        return view('personal.pengumuman', [
+            // 'user' => User::where('id', Auth::user()->id)->first()
+            'jadwal' => User::where('id', 1)->first()
+        ]);
+    });
 });

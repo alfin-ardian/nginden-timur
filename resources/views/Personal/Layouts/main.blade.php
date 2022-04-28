@@ -28,9 +28,39 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-
+        <nav class="navbar fixed-bottom navbar-light bg-info">
+            <ul class="list-unstyled d-flex justify-content-around">
+                <li class="nav-item {{ Request::is('personal') ? 'active' : ''}}">
+                    <a class="nav-link" href="/personal">
+                        <i class="fa-solid fa-house fa-2xl"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('personal/riwayat*') ? 'active' : ''}}">
+                    <a class="nav-link" href="/personal/riwayat">
+                        <i class="fa-regular fa-calendar fa-2xl"></i>
+                        <p>Riwayat</p>
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('personal/pengumuman*') ? 'active' : ''}}">
+                    <a class="nav-link" href="/personal/pengumuman">
+                        <i class="fa-regular fa-bell fa-2xl"></i>
+                        <p>Info</p>
+                    </a>
+                </li>
+                <li class="nav-item {{ Request::is('personal/akun*') ? 'active' : ''}}">
+                    <a class="nav-link" href="/personal/akun">
+                        {{-- <i class="fa-solid fa-user-large "></i> --}}
+                        {{-- <i class="fa-thin fa-user "></i> --}}
+                        {{-- <i class="fa-light fa-user "></i> --}}
+                        <i class="fa-regular fa-user fa-2xl"></i>
+                        <p>Akun</p>
+                    </a>
+                </li>
+            </ul>
+          </nav>
         <!-- Sidebar -->
-        @include('personal.layouts.sidebar')
+        {{-- @include('personal.layouts.sidebar') --}}
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -40,12 +70,6 @@
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
 
@@ -107,29 +131,27 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                   {{ Auth::user() }}</span>
+                                </span>
                                 <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                    src="/img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Akun Saya
                                 </a>
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    Ubah Password
                                 </a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Keluar
                                 </a>
                             </div>
                         </li>
