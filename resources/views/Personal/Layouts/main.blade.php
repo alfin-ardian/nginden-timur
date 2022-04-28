@@ -39,7 +39,7 @@
                 <li class="nav-item mr-4">
                     <a class="nav-link {{ Request::is('personal/riwayat') ? 'text-white' : ''}}" href="/personal/riwayat">
                         <i class="fa-regular fa-calendar fa-2xl"></i>
-                        <p>Riwayat</p>
+                        <p>Memo</p>
                     </a>
                 </li>
                 <li class="nav-item mr-4">
@@ -68,7 +68,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
                     <!-- Topbar Navbar -->
-                    <a href="/personal" class="text-decoration-none">Nginden Timur</a>
+                    <a href="/personal" class="text-decoration-none">DATA CENTER</a>
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
@@ -168,7 +168,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Nginden timur <?= date('Y') ?></span>
+                        <span>Copyright &copy; Nginden Timur <?= date('Y') ?></span>
                     </div>
                 </div>
             </footer>

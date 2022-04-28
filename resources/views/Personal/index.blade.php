@@ -34,7 +34,7 @@ use Illuminate\Support\Carbon;
                   <p> Waktu Absen : {{ $jadwal->absensi['waktu_absen'] }} </p>
                   @endif
                   @if(empty($jadwal->absensi['presensi']))
-                  <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#modalMd">Absen Sekarang</a>
+                  <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalMd">Absen Sekarang</a>
                   @else
                   <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalMd">Ubah</a>
                   @endif
@@ -76,7 +76,7 @@ use Illuminate\Support\Carbon;
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-primary" id="myModal">Simpan</button>
+            <button type="button" class="btn btn-info" id="myModal">Simpan</button>
             </div>
         </div>
         </div>

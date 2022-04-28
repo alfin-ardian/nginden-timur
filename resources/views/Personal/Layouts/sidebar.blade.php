@@ -25,7 +25,7 @@
     <li class="nav-item {{ Request::is('personal/riwayat*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/personal/riwayat">
             <i class="fa-solid fa-calendar-days"></i>
-            <span>Riwayat</span>
+            <span>Tanggal</span>
         </a>
     </li>
     <li class="nav-item {{ Request::is('personal/pengumuman*') ? 'active' : ''}}">
