@@ -47,7 +47,12 @@ Route::prefix('admin')->group(function () {
 Route::prefix('personal')->group(function () {
     Route::resource('/', PersonalController::class);
     Route::get('/riwayat', function () {
-        return view('personal.riwayat');
+        return view('personal.riwayat', [
+            'jadwals' => Jadwal::with(['absensi' => function ($query) {
+                return $query->where('user_id', 1)->first();
+            }])
+                ->get()
+        ]);
     });
     Route::get('/akun', function () {
         return view('personal.akun', [
