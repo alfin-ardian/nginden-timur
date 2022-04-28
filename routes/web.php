@@ -2,10 +2,11 @@
 
 use App\Models\User;
 use App\Models\Jadwal;
+use App\Models\Pengumuman;
 use Illuminate\Support\Facades\Auth;
+
+
 use Illuminate\Support\Facades\Route;
-
-
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsensiController;
@@ -55,9 +56,13 @@ Route::prefix('personal')->group(function () {
         ]);
     });
     Route::get('/pengumuman', function () {
-        return view('personal.pengumuman', [
-            // 'user' => User::where('id', Auth::user()->id)->first()
-            'jadwal' => User::where('id', 1)->first()
+        return view('personal.pengumuman.index', [
+            'pengumumans' => Pengumuman::all()
+        ]);
+    });
+    Route::get('/pengumuman/{id}', function ($id) {
+        return view('personal.pengumuman.show', [
+            'pengumuman' => Pengumuman::find($id)
         ]);
     });
 });

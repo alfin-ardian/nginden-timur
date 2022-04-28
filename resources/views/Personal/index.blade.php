@@ -9,7 +9,6 @@ use Illuminate\Support\Carbon;
         <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
     </div>
     <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
-    {{-- {{ dd($jadwal->absensi) }} --}}
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
         {{ session('success') }}
@@ -21,14 +20,14 @@ use Illuminate\Support\Carbon;
 
               <div class="card text-center">
                 <div class="card-header">
-                  {{ $jadwal->nama_sambung }}
+                  Kegiatan : {{ $jadwal->nama_sambung }}
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title">{{ $jadwal->tempat }}</h5>
+                  <h5 class="card-title">Tempat : {{ $jadwal->tempat }}</h5>
                   @if($jadwal->pengajar_pertama)
                   <p class="card-text">{{ $jadwal->pengajar_pertama }} : {{ $jadwal->materi_pertama }}</p>
                   @endif
-                  <p> {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }} </p>
+                  <p> Waktu : {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }} </p>
                   @if(isset($jadwal->absensi['waktu_absen']))
                   <p> Status : {{ $jadwal->absensi['presensi'] == 'H' ? 'Hadir': $jadwal->absensi['presensi'] == 'I' ? 'Izin': 'Sakit'}} </p>
                   <p> Waktu Absen : {{ $jadwal->absensi['waktu_absen'] }} </p>
