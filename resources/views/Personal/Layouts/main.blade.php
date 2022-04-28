@@ -29,30 +29,27 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <nav class="navbar fixed-bottom navbar-light bg-info">
-            <ul class="list-unstyled d-flex justify-content-around">
-                <li class="nav-item {{ Request::is('personal') ? 'active' : ''}}">
-                    <a class="nav-link" href="/personal">
+            <ul class="list-unstyled d-flex justify-content-between">
+                <li class="nav-item mr-4">
+                    <a class="nav-link {{ Request::is('personal') ? 'text-white' : ''}}" href="/personal">
                         <i class="fa-solid fa-house fa-2xl"></i>
                         <p>Home</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('personal/riwayat*') ? 'active' : ''}}">
-                    <a class="nav-link" href="/personal/riwayat">
+                <li class="nav-item mr-4">
+                    <a class="nav-link {{ Request::is('personal/riwayat') ? 'text-white' : ''}}" href="/personal/riwayat">
                         <i class="fa-regular fa-calendar fa-2xl"></i>
                         <p>Riwayat</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('personal/pengumuman*') ? 'active' : ''}}">
-                    <a class="nav-link" href="/personal/pengumuman">
+                <li class="nav-item mr-4">
+                    <a class="nav-link {{ Request::is('personal/pengumuman*') ? 'text-white' : ''}}" href="/personal/pengumuman">
                         <i class="fa-regular fa-bell fa-2xl"></i>
                         <p>Info</p>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::is('personal/akun*') ? 'active' : ''}}">
-                    <a class="nav-link" href="/personal/akun">
-                        {{-- <i class="fa-solid fa-user-large "></i> --}}
-                        {{-- <i class="fa-thin fa-user "></i> --}}
-                        {{-- <i class="fa-light fa-user "></i> --}}
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('personal/akun*') ? 'text-white' : ''}}" href="/personal/akun">
                         <i class="fa-regular fa-user fa-2xl"></i>
                         <p>Akun</p>
                     </a>
@@ -69,11 +66,10 @@
             <div id="content">
 
                 <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
                     <!-- Topbar Navbar -->
+                    <a href="/personal" class="text-decoration-none">Nginden Timur</a>
                     <ul class="navbar-nav ml-auto">
-
-
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -86,7 +82,7 @@
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
-                                    Alerts Center
+                                    Pengumuman Baru
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="mr-3">
@@ -121,7 +117,7 @@
                                         Spending Alert: We've noticed unusually high spending for your account.
                                     </div>
                                 </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                                <a class="dropdown-item text-center small text-gray-500" href="/personal/pengumuman">Lihat Selengkapnya</a>
                             </div>
                         </li>
 
@@ -218,6 +214,7 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+    <script src="/js/upload.js"></script>
 
 </body>
 </html>

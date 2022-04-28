@@ -1,21 +1,41 @@
 @extends('personal.layouts.main')
 
 @section('container')
-<div class="container-fluid">
-    <!-- Page Heading -->
-    <div class="row mb-2">
-        <div class="col-md-12 d-inline">
-            <h1 class="h3 mb-2 text-gray-800">Akun Saya</h1>
-            <input type="file">
-            <img class="rounded-circle" alt="25x25" width="100x100" height="100x100"src="https://mdbootstrap.com/img/Photos/Avatars/img%20(31).jpg"
-            data-holder-rendered="true">
-        </div>
+<style type="text/css">
+ .file {
+  visibility: hidden;
+  position: absolute;
+}
+</style>
+<div class="container-fluid mt-4">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Akun Saya</h1>
     </div>
+    <h1 class="h3 mb-0 text-gray-800">Akun saya</h1>
+    <p>perbarui dan lengkapi informasi akun</p>
     <div class="card shadow mb-4">
         <div class="card-body">
             <form class="row g-3" method="post" action="/admin/user/{{ $user->id }}">
                 @method('put')
                 @csrf
+                <div class="col-md-6">
+                    <label class="form-label">Foto Profil</label>
+                  </div>
+                <div class="ml-2 col-sm-6">
+                    <div id="msg"></div>
+                    <form method="post" id="image-form">
+                      <input type="file" name="img[]" class="file" accept="image/*">
+                      <div class="input-group my-3">
+                        <input type="text" class="form-control" disabled placeholder="Pilih Foto" id="file">
+                        <div class="input-group-append">
+                          <button type="button" class="browse btn btn-primary">Cari...</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="ml-2 col-sm-6">
+                    <img src="https://placehold.it/20x20" id="preview" class="img-thumbnail">
+                  </div>
                 <div class="col-md-6">
                   <label class="form-label">Nama</label>
                   <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }} ">
@@ -98,18 +118,5 @@
               </form>
         </div>
     </div>
-
 </div>
 @endsection
-<script>
-    function myFunction() {
-      var x = document.getElementById("myInput");
-      if (x.type === "password") {
-        x.type = "text";
-      } else {
-        x.type = "password";
-      }
-    }
-</script>
-
-
