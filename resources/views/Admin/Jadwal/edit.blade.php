@@ -72,10 +72,10 @@
                     <label for="inputAddress" class="form-label">Jenis Peserta</label>
                     <select class="form-control" name="peserta" value="{{ old('peserta',$jadwal->peserta) }}" required>
                         <option value="" {{ $jadwal->peserta == '' ? 'selected':''}}>pilih jenis peserta</option>
-                        <option value="semua-jamaah" {{ $jadwal->peserta == 'semua-jamaah' ? 'selected':''}}>Semua Jamaah</option>
-                        <option value="ibu-ibu" {{ $jadwal->peserta == 'ibu-ibu' ? 'selected':''}}>Ibu-Ibu</option>
-                        <option value="pengurus" {{ $jadwal->peserta == 'pengurus' ? 'selected':''}}>Pengurus</option>
-                        <option value="muda-mudi" {{ $jadwal->peserta == 'muda-mudi' ? 'selected':''}}>Muda-Mudi</option>
+                        <option value="all" {{ $jadwal->peserta == 'all' ? 'selected':''}}>Semua Jamaah</option>
+                        <option value="ibu" {{ $jadwal->peserta == 'ibu' ? 'selected':''}}>Ibu-Ibu</option>
+                        {{-- <option value="pengurus" {{ $jadwal->peserta == 'pengurus' ? 'selected':''}}>Pengurus</option> --}}
+                        <option value="remaja" {{ $jadwal->peserta == 'remaja' ? 'selected':''}}>Muda-Mudi</option>
                     </select>
                 </div>
                 <div class="col-12 mt-4">

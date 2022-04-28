@@ -19,23 +19,23 @@
                 @method('put')
                 @csrf
                 <div class="col-md-6">
-                    <label class="form-label">Foto Profil</label>
-                  </div>
+                  <label class="form-label">Foto Profil</label>
+                </div>
                 <div class="ml-2 col-sm-6">
-                    <div id="msg"></div>
+                   <div id="msg"></div>
                     <form method="post" id="image-form">
-                      <input type="file" name="img[]" class="file" accept="image/*">
-                      <div class="input-group my-3">
+                        <input type="file" name="img[]" class="file" accept="image/*">
+                        <div class="input-group my-3">
                         <input type="text" class="form-control" disabled placeholder="Pilih Foto" id="file">
                         <div class="input-group-append">
-                          <button type="button" class="browse btn btn-primary">Cari...</button>
+                            <button type="button" class="browse btn btn-primary">Cari...</button>
                         </div>
-                      </div>
+                        </div>
                     </form>
-                  </div>
-                  <div class="ml-2 col-sm-6">
-                    <img src="https://placehold.it/20x20" id="preview" class="img-thumbnail">
-                  </div>
+                </div>
+                <div class="ml-2 col-sm-6">
+                  <img src="https://placehold.it/20x20" id="preview" class="img-thumbnail">
+                </div>
                 <div class="col-md-6">
                   <label class="form-label">Nama</label>
                   <input type="text" class="form-control" name="name" value="{{ old('name',$user->name) }} ">

@@ -44,6 +44,8 @@
                             <td>Pengurus</td>
                             @elseif ($jadwal->peserta == 'remaja')
                             <td>Muda - Mudi</td>
+                            @else
+                            <td>-</td>
                             @endif
                             <td>
                                 <a href="/admin/jadwal/{{ $jadwal->id }}" class="btn btn-outline-primary"><i class="bi bi-eye-fill"></i></a>
