@@ -52,7 +52,7 @@
             <span>Pengumuman</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('admin/wa*') ? 'active' : ''}}">
+    {{-- <li class="nav-item {{ Request::is('admin/wa*') ? 'active' : ''}}">
         <a class="nav-link collapsed" href="/admin/wa">
             <i class="fa-brands fa-whatsapp"></i>
             <span>Blast WA</span>
@@ -63,6 +63,6 @@
             <i class="fa-regular fa-envelope"></i>
             <span>Blast Email</span>
         </a>
-    </li>
+    </li> --}}
 </ul>
 <!-- End of Sidebar -->

@@ -11,6 +11,7 @@ use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
+use App\Http\Controllers\PengumumanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +40,7 @@ Route::prefix('admin')->group(function () {
     Route::resource('/dapukan', DapukanController::class);
     Route::resource('/jadwal', JadwalController::class);
     Route::resource('/laporan/absensi', AbsensiController::class);
+    Route::resource('/pengumuman', PengumumanController::class);
 });
 
 Route::prefix('personal')->group(function () {
