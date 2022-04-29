@@ -49,6 +49,11 @@ class User extends Authenticatable
         return Carbon::parse($this->attributes['tanggal_lahir'])->age;
     }
 
+    public function last_login()
+    {
+        return Carbon::parse($this->attributes['last_login'])->diffForHumans();
+    }
+
     public function dapukannya()
     {
         return $this->hasOne(Dapukan::class, 'id_dapukan', 'id_dapukan');

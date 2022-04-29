@@ -48,7 +48,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('personal/akun*') ? 'text-white' : ''}}" href="/personal/akun">
+                    <a class="nav-link {{ Request::is('personal/user*') ? 'text-white' : ''}}" href="/personal/user">
                         <i class="fa-regular fa-user fa-2xl"></i>
                         <p>Akun</p>
                     </a>
@@ -135,7 +135,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="/personal/akun">
+                                <a class="dropdown-item" href="/personal/user">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Akun Saya
                                 </a>

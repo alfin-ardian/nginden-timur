@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use App\Models\User;
 use App\Models\Jadwal;
 use App\Models\Absensi;
 
@@ -21,9 +22,9 @@ class PersonalController extends Controller
         return view('personal.index', [
             'jadwal' => Jadwal::with(['absensi' => function ($query) {
                 $query->where('user_id', Auth::user()->id)->first();
-            }])->first()
-
-            // 'jadwal' => Jadwal::with(['absensi'])->get()
+            }])
+                ->where('tanggal', date('Y-m-d'))
+                ->first()
         ]);
     }
 
@@ -87,13 +88,9 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        return view('personal.create', [
-            'jadwal' => Jadwal::with(['absensi' => function ($query) {
-                $query->where('user_id', '1');
-            }])->first()
-        ]);
+        return 'hello';
     }
 
     /**

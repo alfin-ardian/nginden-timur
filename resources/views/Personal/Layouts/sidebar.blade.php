@@ -34,8 +34,8 @@
             <span>Pengumuman</span>
         </a>
     </li>
-    <li class="nav-item {{ Request::is('personal/akun*') ? 'active' : ''}}">
-        <a class="nav-link collapsed" href="/personal/akun">
+    <li class="nav-item {{ Request::is('personal/user*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/personal/user">
             <i class="fa-solid fa-user-large"></i>
             <span>Akun</span>
         </a>

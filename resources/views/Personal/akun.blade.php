@@ -11,7 +11,111 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Akun Saya</h1>
     </div>
-    <h1 class="h3 mb-0 text-gray-800">Akun saya</h1>
+    <div class="card mb-4">
+        <div class="card-body">
+            <a class="btn btn-info mb-2" href="/personal/{{ $user->id }}/edit"><i class="bi bi-pencil-square"></i> Edit</a>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Nama</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->name }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Gender</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->jenis_kelamin }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Email</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->email }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Whatsapp</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->wa }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Tempat Lahir</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->tempat_lahir }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Tanggal Lahir</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->tanggal_lahir }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Status</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->status_pernikahan }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Pendidikan</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->pendidikan }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Pekerjaan</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->pekerjaan }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Alamat</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->alamat }} </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label class="form-label">Terakhir Login</label>
+                </div>
+                <div class="col">
+                    <label class="form-label">:</label>
+                    <label class="form-label">{{ $user->last_login }} </label>
+                </div>
+            </div>
+        </div>
+      </div>
+    {{-- <h1 class="h3 mb-0 text-gray-800">Akun saya</h1>
     <p>perbarui dan lengkapi informasi akun</p>
     <div class="card shadow mb-4">
         <div class="card-body">
@@ -117,6 +221,6 @@
                 </div>
               </form>
         </div>
-    </div>
+    </div> --}}
 </div>
 @endsection

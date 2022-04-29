@@ -15,7 +15,7 @@ use Illuminate\Support\Carbon;
         {{ session('success') }}
     </div>
     @endif
-    @if($jadwal->absensi->count() > 0)
+    @if(isset($jadwal->absensi))
     <div class="row">
         <div class="col-xl-4 col-lg-7">
             <div class="card mb-4">
@@ -59,14 +59,14 @@ use Illuminate\Support\Carbon;
         </div>
     </div>
     @endif
-    @if(empty(Auth::user()->tanggal_lahir))
+    @if(empty(Auth::user()->tempat_lahir))
     <div class="row">
         <div class="col-xl-4 col-lg-7">
             <div class="card mb-4">
               <div class="card text-center">
                 <div class="card-body">
                   <h5 class="card-title">Profil anda belum lengkap, silakan dilengkapi</h5>
-                  <a href="/personal/akun" class="btn btn-info text-decoration-none">Lengkapi Sekarang</a>
+                  <a href="/personal/user/{{ Auth::user()->id }}/edit" class="btn btn-info text-decoration-none">Lengkapi Sekarang</a>
                 </div>
               </div>
             </div>

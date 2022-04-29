@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Models\User;
+
 class LoginController extends Controller
 {
     public function index()
@@ -22,6 +24,9 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            User::where('id', Auth::user()->id)->update([
+                'last_login' => date('Y-m-d H:i:s'),
+            ]);
             if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2) {
                 return redirect('/admin');
             } else {

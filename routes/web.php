@@ -15,6 +15,7 @@ use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\PersonalUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,7 @@ Route::prefix('admin')->group(function () {
 
 Route::prefix('personal')->group(function () {
     Route::resource('/', PersonalController::class);
+    Route::resource('/user', PersonalUserController::class);
     Route::get('/riwayat', function () {
         return view('personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
@@ -66,11 +68,6 @@ Route::prefix('personal')->group(function () {
     Route::get('/pengumuman/{id}', function ($id) {
         return view('personal.pengumuman.show', [
             'pengumuman' => Pengumuman::find($id)
-        ]);
-    });
-    Route::get('/akun', function () {
-        return view('personal.akun', [
-            'user' => User::where('id', Auth::user()->id)->first()
         ]);
     });
 });
