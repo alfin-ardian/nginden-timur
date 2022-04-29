@@ -127,7 +127,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                   {{ Auth::user() }}</span>
+                                   {{ Auth::user()->name }}</span>
                                 </span>
                                 <img class="img-profile rounded-circle"
                                     src="/img/undraw_profile.svg">
@@ -198,7 +198,10 @@
                 <div class="modal-body">Klik Keluar jika anda yakin ingin keluar</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                    <a class="btn btn-primary" href="login.html">Keluar</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button class="btn btn-info">Keluar <span data-feather="log-out"></span></button>
+                    </form>
                 </div>
             </div>
         </div>

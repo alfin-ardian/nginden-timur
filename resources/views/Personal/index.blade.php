@@ -8,16 +8,17 @@ use Illuminate\Support\Carbon;
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
     </div>
+    {{-- {{ dd($jadwal) }} --}}
     <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
         {{ session('success') }}
     </div>
     @endif
+    @if($jadwal->absensi->count() > 0)
     <div class="row">
         <div class="col-xl-4 col-lg-7">
             <div class="card mb-4">
-
               <div class="card text-center">
                 <div class="card-header">
                   Kegiatan : {{ $jadwal->nama_sambung }}
@@ -45,6 +46,33 @@ use Illuminate\Support\Carbon;
             </div>
         </div>
     </div>
+    @else
+    <div class="row">
+        <div class="col-xl-4 col-lg-7">
+            <div class="card mb-4">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Belum ada jadwal hari ini</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if(empty(Auth::user()->tanggal_lahir))
+    <div class="row">
+        <div class="col-xl-4 col-lg-7">
+            <div class="card mb-4">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Profil anda belum lengkap, silakan dilengkapi</h5>
+                  <a href="/personal/akun" class="btn btn-info text-decoration-none">Lengkapi Sekarang</a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    @endif
     <!-- Modal -->
     <div class="modal fade" id="modalMd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

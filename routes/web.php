@@ -53,15 +53,9 @@ Route::prefix('personal')->group(function () {
     Route::get('/riwayat', function () {
         return view('personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
-                return $query->where('user_id', 1)->first();
+                return $query->where('user_id', Auth::user()->id)->first();
             }])->whereMonth('created_at', 4)
                 ->get()
-        ]);
-    });
-    Route::get('/akun', function () {
-        return view('personal.akun', [
-            // 'user' => User::where('id', Auth::user()->id)->first()
-            'user' => User::where('id', 1)->first()
         ]);
     });
     Route::get('/pengumuman', function () {
@@ -72,6 +66,11 @@ Route::prefix('personal')->group(function () {
     Route::get('/pengumuman/{id}', function ($id) {
         return view('personal.pengumuman.show', [
             'pengumuman' => Pengumuman::find($id)
+        ]);
+    });
+    Route::get('/akun', function () {
+        return view('personal.akun', [
+            'user' => User::where('id', Auth::user()->id)->first()
         ]);
     });
 });

@@ -62,12 +62,6 @@ $hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
         </span>
         @endforeach
     </div>
-    {{-- <div class="col-md-12 mb-3">
-        <button type="button" class="btn btn-outline-success">Hadir</button>
-        <button type="button" class="btn btn-outline-info">Izin</button>
-        <button type="button" class="btn btn-outline-warning">Sakit</button>
-        <button type="button" class="btn btn-outline-danger">Belum Absen</button>
-    </div> --}}
     <div class="row">
     @foreach($jadwals as $jadwal)
       <div class="col-xl-3 col-md-3">

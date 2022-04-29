@@ -20,8 +20,10 @@ class PersonalController extends Controller
     {
         return view('personal.index', [
             'jadwal' => Jadwal::with(['absensi' => function ($query) {
-                $query->where('user_id', '1');
+                $query->where('user_id', Auth::user()->id)->first();
             }])->first()
+
+            // 'jadwal' => Jadwal::with(['absensi'])->get()
         ]);
     }
 

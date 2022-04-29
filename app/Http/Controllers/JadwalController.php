@@ -108,8 +108,7 @@ class JadwalController extends Controller
      */
     public function update(Request $request, Jadwal $jadwal, Absensi $absensi)
     {
-
-        Absensi::destroy($jadwal->id);
+        Absensi::where('jadwal_id', $request->id)->delete();
 
         $jadwal = Jadwal::where('id', $jadwal->id)->update([
             'nama_sambung' => $request->nama_sambung,
