@@ -124,7 +124,15 @@ use Illuminate\Support\Carbon;
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $absensi->user['name'] }}</td>
-                                    <td>{{ $absensi->presensi }}</td>
+                                    @if($absensi->presensi == 'H')
+                                    <td>Hadir</td>
+                                    @elseif($absensi->presensi == 'I')
+                                    <td>Izin</td>
+                                    @elseif($absensi->presensi == 'S')
+                                    <td>Sakit</td>
+                                    @else
+                                    <td>Belum Absen</td>
+                                    @endif
                                     <td>{{ $absensi->keterangan }}</td>
                                     <td>{{ $absensi->waktu_absen ? date('H:i', strtotime($absensi->waktu_absen)) : '' }}  </td>
                                     <td>{{ $absensi->tempat_absen }}</td>

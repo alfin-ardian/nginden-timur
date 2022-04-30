@@ -13,22 +13,21 @@ function findTotal($absensi,$ket){
 }
 ?>
 <div class="container-fluid">
-    {{-- {{ dd($jadwals) }} --}}
     <h1 class="h3 mb-2 text-gray-800">Dashboard Rekap Sambung</h1>
     <div class="card shadow mb-1">
         <div class="card-body">
          <div class="row g-3 align-items-center">
             <div class="col-auto">
-              <label for="inputPassword6" class="col-form-label">Bulan</label>
+              <label for="inputPassword6" class="col-form-label">Bulan : {{ Carbon::parse(date('Y-m'))->translatedFormat('F Y') }}</label>
             </div>
-            <div class="col-auto">
+            {{-- <div class="col-auto">
                 <select class="form-control col-auto">
                     <option value="1">Apri 2022</option>
                     <option value="2">Mei 2022</option>
                     <option value="3">Juni 2022</option>
                     <option value="4">Juli 2022</option>
                   </select>
-            </div>
+            </div> --}}
           </div>
         </div>
     </div>
