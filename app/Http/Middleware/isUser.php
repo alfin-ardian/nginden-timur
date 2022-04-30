@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class user
+class isUser
 {
     /**
      * Handle an incoming request.

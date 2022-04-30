@@ -55,7 +55,7 @@
                                                 placeholder="Masukan email atau whatsapp">
                                                 @error('email')
                                                     <div class="invalid-feedback">
-                                                    Email atau Whatsapp tidak boleh kosong
+                                                    {{ $message }}
                                                     </div>
                                                 @enderror
                                         </div>
@@ -64,7 +64,7 @@
                                                 name="password" placeholder="Password">
                                                 @error('password')
                                                     <div class="invalid-feedback">
-                                                    Password tidak boleh kosong
+                                                    {{ $message }}
                                                     </div>
                                                 @enderror
                                         </div>

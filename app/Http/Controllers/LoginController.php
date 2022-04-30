@@ -16,13 +16,17 @@ class LoginController extends Controller
 
     public function authenticate(Request $request)
     {
-        // return 'hello';
         $credentials = $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // return $request;
+
+        if (
+            Auth::attempt(['email' => $request->email, 'password' => $request->password])
+            || Auth::attempt(['wa' => $request->email, 'password' => $request->password])
+        ) {
             $request->session()->regenerate();
             User::where('id', Auth::user()->id)->update([
                 'last_login' => date('Y-m-d H:i:s'),
@@ -34,7 +38,13 @@ class LoginController extends Controller
             }
         }
 
-        return back()->with('error', 'Gagal Login! email atau whatsapp atau password salah');
+        // if (Auth::attempt($credentials)) {
+
+        // }
+
+        return back()->withErrors([
+            'email' => 'Email atau password salah',
+        ])->onlyInput('email');
     }
 
     public function logout(Request $request)

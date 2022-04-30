@@ -105,7 +105,7 @@ class UserController extends Controller
             'status_pernikahan' => 'required'
         ]);
 
-        $validatedData['password'] = $request->password;
+        $validatedData['password'] = bcrypt($request->password);
 
         $user->update($validatedData);
 
