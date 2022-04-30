@@ -59,7 +59,7 @@ class UserController extends Controller
     public function show(User $user)
     {
         return view('admin.user.show', [
-            'user' => $user,
+            'user' => User::with('absensis')->find($user->id)
         ]);
     }
 
