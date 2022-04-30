@@ -23,7 +23,7 @@ class PersonalController extends Controller
             'jadwal' => Jadwal::with(['absensi' => function ($query) {
                 $query->where('user_id', Auth::user()->id)->first();
             }])
-                ->where('tanggal', date('Y-m-d'))
+                // ->where('tanggal', date('Y-m-d'))
                 ->first()
         ]);
     }
@@ -33,14 +33,14 @@ class PersonalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('personal.create', [
-            'jadwal' => Jadwal::with(['absensi' => function ($query) {
-                $query->where('user_id', '1');
-            }])->first()
-        ]);
-    }
+    // public function create()
+    // {
+    //     return view('personal.create', [
+    //         'jadwal' => Jadwal::with(['absensi' => function ($query) {
+    //             $query->where('user_id', '1');
+    //         }])->first()
+    //     ]);
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -56,16 +56,13 @@ class PersonalController extends Controller
         Absensi::create([
             'presensi' => $request->presensi,
             'keterangan' => $request->keterangan,
-            'waktu_absen' => date('H:i:s'),
+            'waktu_absen' => date('Y-m-d H:i:s'),
             'user_id' => $request->user_id,
             'jadwal_id' => $request->jadwal_id
         ]);
 
         return redirect('/personal')->with('success', 'Berhasil Absen');
     }
-    // {
-
-    // }
 
     /**
      * Display the specified resource.
@@ -73,14 +70,14 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        return view('personal.create', [
-            'jadwal' => Jadwal::with(['absensi' => function ($query) {
-                $query->where('user_id', '1');
-            }])->first()
-        ]);
-    }
+    // public function show($id)
+    // {
+    //     return view('personal.create', [
+    //         'jadwal' => Jadwal::with(['absensi' => function ($query) {
+    //             $query->where('user_id', '1');
+    //         }])->first()
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -88,10 +85,10 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
-    {
-        return 'hello';
-    }
+    // public function edit(User $user)
+    // {
+    //     return 'hello';
+    // }
 
     /**
      * Update the specified resource in storage.
@@ -100,13 +97,14 @@ class PersonalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Absensi $absensi)
+    public function update(Request $request)
     {
+        // return 'hello';
         // return $request;
-        Absensi::where('id', $absensi->id)->update([
+        Absensi::where('id', $request->id)->update([
             'presensi' => $request->presensi,
             'keterangan' => $request->keterangan,
-            'waktu_absen' => date('H:i:s'),
+            'waktu_absen' => date('Y-m-d H:i:s'),
             'user_id' => $request->user_id,
             'jadwal_id' => $request->jadwal_id
         ]);

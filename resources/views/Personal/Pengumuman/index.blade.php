@@ -4,6 +4,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Pengumuman</h1>
     </div>
+    @if($pengumumans->count() > 0)
     <div class="row">
         @foreach($pengumumans as $pengumuman)
             <div class="col-xl-3 col-md-3">
@@ -19,6 +20,17 @@
             </div>
         @endforeach
     </div>
+    @else
+    <div class="row">
+        <div class="col-xl-3 col-md-3">
+            <div class="card mb-2">
+               <div class="card-body">
+                    <p class="card-text">Belum ada pengumuman baru</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 
 @endsection

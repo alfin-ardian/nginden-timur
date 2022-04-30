@@ -42,11 +42,6 @@
                   <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$user->name) }} ">
                   <input type="hidden" class="form-control" name="id_role" value="4">
                 </div>
-                @error('name')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
                 <div class="col-md-6">
                     <label class="form-label">Jenis Kelamin</label>
                     <select class="form-control @error('jenis_kelamin') is-invalid @enderror" name="jenis_kelamin">
@@ -62,30 +57,30 @@
                       <option value="P">Perempuan</option>
                       @endif
                     </select>
+                    @error('jenis_kelamin')
+                    <div class="invalid-feedback">
+                        Jenis kelamin tidak boleh kosong
+                    </div>
+                    @enderror
                 </div>
-                @error('jenis_kelamin')
-                <div class="invalid-feedback">
-                    Jenis kelamin tidak boleh kosong
-                </div>
-                @enderror
                 <div class="col-md-6 mt-3">
                     <label class="form-label">WA</label>
                     <input type="text" class="form-control @error('wa') is-invalid @enderror" name="wa" value="{{ old('wa',$user->wa) }}" required>
+                    @error('wa')
+                    <div class="invalid-feedback">
+                        Nomor whatsapp tidak boleh kosong
+                    </div>
+                    @enderror
                 </div>
-                @error('wa')
-                <div class="invalid-feedback">
-                    Nomor whatsapp tidak boleh kosong
-                </div>
-                @enderror
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Email</label>
                   <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email',$user->email) }} ">
+                  @error('email')
+                  <div class="invalid-feedback">
+                      Email tidak boleh kosong
+                  </div>
+                  @enderror
                 </div>
-                @error('email')
-                <div class="invalid-feedback">
-                    Email tidak boleh kosong
-                </div>
-                @enderror
                 <div class="col-md-6 mt-3">
                   <label class="form-label">Tempat Lahir</label>
                   <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" name="tempat_lahir" value="{{ old('tempat_lahir',$user->tempat_lahir) }}">
@@ -223,7 +218,7 @@
                     <option value="S2">S2</option>
                     <option value="S3" selected>S3</option>
                     @else
-                    <option selected>pilih pendidikan</option>
+                    <option selected value="">pilih pendidikan</option>
                     <option value="SD">SD</option>
                     <option value="SMP">SMP</option>
                     <option value="SMA">SMA</option>

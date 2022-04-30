@@ -50,7 +50,9 @@ Route::prefix('admin')->group(function () {
 });
 
 Route::prefix('personal')->group(function () {
-    Route::resource('/', PersonalController::class);
+    // Route::resource('/', PersonalController::class);
+    Route::get('/', [PersonalController::class, 'index']);
+    Route::put('/', [PersonalController::class, 'update']);
     Route::resource('/user', PersonalUserController::class);
     Route::get('/riwayat', function () {
         return view('personal.riwayat', [

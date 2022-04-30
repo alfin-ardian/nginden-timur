@@ -11,8 +11,17 @@ function findTotal($absensi,$ket){
     return $total;
 }
 $hadir = 0;
+$izin = 0;
+$sakit = 0;
+$belum_absen = 0;
+$hadirProsentase = 0;
 foreach($jadwals as $jadwal){
-$hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
+$hadirProsentase = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;
+$hadir = findTotal($jadwal->absensi,'H');
+$izin = findTotal($jadwal->absensi,'I');
+$sakit = findTotal($jadwal->absensi,'S');
+$belum_absen = findTotal($jadwal->absensi,null);
+}
 ?>
 <div class="container-fluid mb-4 mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -36,7 +45,7 @@ $hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
           </div>
         </div>
     </div>
-    <p>Keimanan anda bulan ini = {{ $hadir }}%
+    <p>Keimanan anda bulan ini = {{ $hadirProsentase }}%
     <div class="progress mb-2">
        @foreach ($jadwals as $jadwal)
         <div class="progress-bar bg-success" role="progressbar" style="width: {{ (findTotal($jadwal->absensi,'H')/$jadwal->count())*100}}%" aria-valuenow="{{ (findTotal($jadwal->absensi,'H')/$jadwal->count())*100}}" aria-valuemin="0" aria-valuemax="100">{{ (findTotal($jadwal->absensi,'H')/$jadwal->count())*100}}%</div>
@@ -47,21 +56,20 @@ $hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
     </div>
     <p>Keterangan :</p>
     <div class="text-center small mb-3">
-        @foreach($jadwals as $jadwal)
         <span class="mr-2">
-            <i class="fas fa-circle text-success"></i> Hadir : {{ findTotal($jadwal->absensi, 'H') }}
+            <i class="fas fa-circle text-success"></i> Hadir : {{ $hadir }}
         </span>
         <span class="mr-2">
-            <i class="fas fa-circle text-info"></i> Ijin : {{ findTotal($jadwal->absensi,'I')}}
+            <i class="fas fa-circle text-info"></i> Ijin : {{ $izin}}
         </span>
         <span class="mr-2">
-            <i class="fas fa-circle text-warning"></i> Sakit : {{ findTotal($jadwal->absensi, 'I')}}
+            <i class="fas fa-circle text-warning"></i> Sakit : {{ $sakit}}
         </span>
         <span class="mr-2">
-            <i class="fas fa-circle text-danger"></i> Belum Absen : {{ findTotal($jadwal->absensi, null)}}
+            <i class="fas fa-circle text-danger"></i> Belum Absen : {{ $belum_absen}}
         </span>
-        @endforeach
     </div>
+    @if($jadwals->count() > 0)
     <div class="row">
     @foreach($jadwals as $jadwal)
       <div class="col-xl-3 col-md-3">
@@ -70,108 +78,30 @@ $hadir = (findTotal($jadwal->absensi,'H')/$jadwal->count())*100;}
               <div class="card-body">
                 <h5 class="card-title">{{ $jadwal->nama_sambung }}</h5>
                 <p class="card-text">{{ $jadwal->tanggal() }}</p>
-                @if ($jadwal->absensi[0]['presensi'] == 'hadir')
+                @foreach ($jadwal->absensi as $absensi)
+                @if ($absensi['presensi'] == 'H')
                 <p class="card-text">Status : Hadir</p>
-                @elseif ($jadwal->absensi[0]['presensi'] == 'izin')
+                @elseif ($absensi['presensi'] == 'I')
                 <p class="card-text">Status : Izin</p>
-                @elseif ($jadwal->absensi[0]['presensi'] == 'sakit')
+                @elseif ($absensi['presensi'] == 'S')
                 <p class="card-text">Status : Sakit</p>
                 @else
                 <p class="card-text">Status : Belum Absen</p>
                 @endif
-                @if($jadwal->absensi[0]['keterangan'] != null)
-                <p class="card-text">Keterangan : {{ $jadwal->absensi[0]['keterangan'] }}</p>
+                @if($absensi['keterangan'] != null)
+                <p class="card-text">Keterangan : {{ $absensi['keterangan'] }}</p>
                 @endif
-                @if($jadwal->absensi[0]['waktu_absen'] != null)
-                <p class="card-text">Jam Absen : {{ $jadwal->absensi[0]['waktu_absen'] }}</p>
+                @if($absensi['waktu_absen'] != null)
+                <p class="card-text">Jam Absen : {{ $absensi['waktu_absen'] }}</p>
                 @endif
+                @endforeach
               </div>
             </div>
           </div>
       </div>
       @endforeach
-      {{-- <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Sambung Desa</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Sambung Teks</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">NamaSambung</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
     </div>
-    <div class="row">
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">NamaSambung</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">NamaSambung</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">NamaSambung</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xl-3 col-md-3">
-          <div class="card mb-4">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">NamaSambung</h5>
-                <p class="card-text">Status : Hadir</p>
-                <p class="card-text">Waktu Absen : 20.15</p>
-              </div>
-            </div>
-          </div>
-      </div>
-    </div> --}}
+    @endif
 </div>
 
 @endsection

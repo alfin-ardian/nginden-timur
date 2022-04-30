@@ -29,11 +29,17 @@ use Illuminate\Support\Carbon;
                   <p class="card-text">{{ $jadwal->pengajar_pertama }} : {{ $jadwal->materi_pertama }}</p>
                   @endif
                   <p> Waktu : {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }} </p>
-                  @if(isset($jadwal->absensi['waktu_absen']))
-                  <p> Status : {{ $jadwal->absensi['presensi'] == 'H' ? 'Hadir': $jadwal->absensi['presensi'] == 'I' ? 'Izin': 'Sakit'}} </p>
-                  <p> Waktu Absen : {{ $jadwal->absensi['waktu_absen'] }} </p>
+                  @if(isset($jadwal->absensi[0]['waktu_absen']))
+                  @if($jadwal->absensi[0]['presensi'] == 'H')
+                  <p>Status: <strong>Hadir</strong></p>
+                  @elseif($jadwal->absensi[0]['presensi'] == 'I')
+                  <p>Status: <strong>Izin</strong></p>
+                  @elseif($jadwal->absensi[0]['presensi'] == 'S')
+                  <p>Status: <strong>Sakit</strong></p>
                   @endif
-                  @if(empty($jadwal->absensi['presensi']))
+                  <p> Waktu Absen : {{ Carbon::parse($jadwal->absensi[0]['waktu_absen'])->format('H:i:s') }}</p> </p>
+                  @endif
+                  @if(empty($jadwal->absensi[0]['presensi']))
                   <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalMd">Absen Sekarang</a>
                   @else
                   <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalMd">Ubah</a>
@@ -81,29 +87,31 @@ use Illuminate\Support\Carbon;
             <h5 class="modal-title" id="exampleModalLabel">Absensi Sambung Kelompok</h5>
             </div>
             <div class="modal-body">
-                <form class="row g-3" method="post" action="/personal">
-                    {{-- @method('put') --}}
+                <form class="row g-3" id="formedit" action="/personal">
                     @csrf
                     <div class="col-md-12">
                         <label class="form-label">Presensi</label>
-                        <select class="form-control" name="presensi" value="{{ old('status') }}" id="selection" onchange="changeplh()">
+                        <select class="form-control" name="presensi" value="{{ old('status') }}" id="presensi" onchange="changeplh()" required>
                           <option selected value="">pilih presensi</option>
                           <option value="H">Hadir</option>
                           <option value="I">Izin</option>
                           <option value="S">Sakit</option>
                         </select>
                       </div>
-                      <input type="hidden" class="form-control" name="user_id" value="{{ old('user_id') }}">
-                      <input type="hidden" class="form-control" name="jadwal_id" value="{{ old('jadwal_id') }}">
+                      @if(isset($jadwal->absensi))
+                      <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
+                      <input type="hidden" class="form-control" id="jadwal_id" name="jadwal_id" value="{{ $jadwal->id }}">
+                      <input type="hidden" class="form-control" id="jadwal_id" name="id" value="{{ $jadwal->absensi[0]['id'] }}">
+                      @endif
                       <div class="col-md-12 mt-2">
                         <label class="form-label">Keterangan</label>
-                        <textarea id="textbox" type="text" default placeholder="contoh Offline" rows="3" class="form-control" name="keterangan" value="{{ old('keterangan') }}"></textarea>
+                        <input id="keterangan" type="text" default placeholder="contoh Offline" rows="3" class="form-control" name="keterangan" value="{{ old('keterangan') }}" required>
                       </div>
                 </form>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="button" class="btn btn-info" id="myModal">Simpan</button>
+            <button type="button" id="submit-edit" class="btn btn-info" onclick="customModalSubmitFunction()">Simpan</button>
             </div>
         </div>
         </div>
@@ -111,23 +119,39 @@ use Illuminate\Support\Carbon;
 </div>
 <script>
 function changeplh(){
- var sel = document.getElementById("selection");
-    var textbx = document.getElementById("textbox");
+ var sel = document.getElementById("presensi");
+    var textbx = document.getElementById("keterangan");
     var indexe = sel.selectedIndex;
 
     if(indexe == 0) {
-     $("#textbox").attr("placeholder", "Tulis Keterangan");
+     $("#keterangan").attr("placeholder", "Tulis Keterangan");
 
     }
     if(indexe == 1) {
-     $("#textbox").attr("placeholder", "Contoh : Offline");
+     $("#keterangan").attr("placeholder", "Contoh : Offline");
     }
     if(indexe == 2) {
-     $("#textbox").attr("placeholder", "Contoh : Lembur kerja");
+     $("#keterangan").attr("placeholder", "Contoh : Lembur kerja");
     }
     if(indexe == 3) {
-     $("#textbox").attr("placeholder", "Contoh : Pusing");
+     $("#keterangan").attr("placeholder", "Contoh : Pusing");
     }
 }
+
+function customModalSubmitFunction(){
+    $.ajax({
+        type: "PUT",
+        url: "/personal",
+        data: $('form').serialize(),
+        error : function(XMLHttpRequest, textStatus, errorThrown){
+            $('#modalMd').modal('hide');
+            location.reload();
+        },
+        success: function(html){
+            $('#modalMd').modal('hide');
+            location.reload();
+        }
+    });
+};
 </script>
 @endsection
