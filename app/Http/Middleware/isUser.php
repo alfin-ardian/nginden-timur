@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class isUser
 {
@@ -16,11 +17,11 @@ class isUser
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->user()->id_role == 4) {
-            return $next($request);
-        } elseif ($request->user()->id_role == 1 || $request->user()->id_role == 2) {
+        if (!Auth::check()) {
+            return redirect('/');
+        } else if ($request->user()->id_role == 1 || $request->user()->id_role == 2) {
             return redirect('/admin');
-        }
-        return redirect('/');
+        } else
+            return $next($request);
     }
 }

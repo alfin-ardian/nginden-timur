@@ -17,11 +17,11 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->id_role == 4) {
-            return redirect('/personal');
-        } elseif (!Auth::check()) {
+        if (!Auth::check()) {
             return redirect('/');
-        }
-        return $next($request);
+        } else if (Auth::user()->id_role == 4) {
+            return redirect('/personal');
+        } else
+            return $next($request);
     }
 }
