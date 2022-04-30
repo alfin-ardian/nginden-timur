@@ -1,6 +1,7 @@
 @extends('personal.layouts.main')
 @section('container')
 <?php
+use Illuminate\Support\Carbon;
 function findTotal($absensi,$ket){
     $total = 0;
         foreach($absensi as $data){
@@ -92,7 +93,7 @@ $belum_absen = findTotal($jadwal->absensi,null);
                 <p class="card-text">Keterangan : {{ $absensi['keterangan'] }}</p>
                 @endif
                 @if($absensi['waktu_absen'] != null)
-                <p class="card-text">Jam Absen : {{ $absensi['waktu_absen'] }}</p>
+                <p class="card-text">Waktu Absen : {{ Carbon::parse($absensi['waktu_absen'])->format('H:i:s') }}</p>
                 @endif
                 @endforeach
               </div>

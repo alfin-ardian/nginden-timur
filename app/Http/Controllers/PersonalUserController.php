@@ -56,9 +56,8 @@ class PersonalUserController extends Controller
             'status_pernikahan' => 'required'
         ]);
 
+        $validatedData['tanggal_lahir'] = $request->tanggal_lahir;
         $user->update($validatedData);
-
-        // User::where('id', $user->id)->update($request->all());
 
         return redirect('/personal/user')->with('success', 'Berhasil update data');
     }
