@@ -72,6 +72,12 @@
             <span>Role</span>
         </a>
     </li>
+    <li class="nav-item {{ Request::is('admin/superAdmin*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/superAdmin">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>superAdmin</span>
+        </a>
+    </li>
     @endif
 </ul>
 <!-- End of Sidebar -->

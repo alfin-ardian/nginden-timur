@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use App\Models\Roles;
 use App\Models\Absensi;
 use App\Models\Dapukan;
 use Laravel\Sanctum\HasApiTokens;
@@ -62,5 +63,10 @@ class User extends Authenticatable
     public function absensis()
     {
         return $this->hasMany(Absensi::class, 'user_id', 'id');
+    }
+
+    public function roles()
+    {
+        return $this->hasOne(Roles::class, 'id', 'id_role');
     }
 }
