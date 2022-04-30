@@ -74,7 +74,9 @@ class PengumumanController extends Controller
      */
     public function edit(Pengumuman $pengumuman)
     {
-        //
+        return view('admin.pengumuman.edit', [
+            'pengumuman' => $pengumuman
+        ]);
     }
 
     /**
@@ -86,7 +88,18 @@ class PengumumanController extends Controller
      */
     public function update(Request $request, Pengumuman $pengumuman)
     {
-        //
+        $validatedData = $request->validate([
+            'judul' => 'required|max:255',
+            'isi' => 'required',
+            'slug' => 'required|max:255|unique:pengumumans,slug,' . $pengumuman->id,
+            'penulis' => 'required|max:255',
+        ]);
+
+        $validatedData['excerpt'] = Str::limit(strip_tags($request->isi), 15);
+
+        $pengumuman->update($validatedData);
+
+        return redirect('/admin/pengumuman')->with('success', 'Pengumuman berhasil diubah');
     }
 
     /**
@@ -97,6 +110,8 @@ class PengumumanController extends Controller
      */
     public function destroy(Pengumuman $pengumuman)
     {
-        //
+        $pengumuman->delete();
+
+        return redirect('/admin/pengumuman')->with('success', 'Pengumuman berhasil dihapus');
     }
 }
