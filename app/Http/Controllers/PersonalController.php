@@ -23,24 +23,10 @@ class PersonalController extends Controller
             'jadwal' => Jadwal::with(['absensi' => function ($query) {
                 $query->where('user_id', Auth::user()->id)->first();
             }])
-                // ->where('tanggal', date('Y-m-d'))
+                ->where('tanggal', date('Y-m-d'))
                 ->first()
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function create()
-    // {
-    //     return view('personal.create', [
-    //         'jadwal' => Jadwal::with(['absensi' => function ($query) {
-    //             $query->where('user_id', '1');
-    //         }])->first()
-    //     ]);
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -48,11 +34,8 @@ class PersonalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Absensi $absensi)
+    public function store(Request $request)
     {
-        // return $request;
-        // Absensi::create($request->all());
-        // $absensi->create($request->all());
         Absensi::create([
             'presensi' => $request->presensi,
             'keterangan' => $request->keterangan,
@@ -65,32 +48,6 @@ class PersonalController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function show($id)
-    // {
-    //     return view('personal.create', [
-    //         'jadwal' => Jadwal::with(['absensi' => function ($query) {
-    //             $query->where('user_id', '1');
-    //         }])->first()
-    //     ]);
-    // }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    // public function edit(User $user)
-    // {
-    //     return 'hello';
-    // }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -99,8 +56,6 @@ class PersonalController extends Controller
      */
     public function update(Request $request)
     {
-        // return 'hello';
-        // return $request;
         Absensi::where('id', $request->id)->update([
             'presensi' => $request->presensi,
             'keterangan' => $request->keterangan,
@@ -109,7 +64,7 @@ class PersonalController extends Controller
             'jadwal_id' => $request->jadwal_id
         ]);
 
-        return redirect('/personal')->with('success', 'Berhasil Absen');
+        return redirect('/personal')->with('success', 'Selamat, Absensi Telah Berhasil');
     }
 
     /**

@@ -44,7 +44,7 @@ class JadwalController extends Controller
         $jadwal = Jadwal::create($request->all());
 
         if ($request->peserta == 'all') {
-            $pesertas = User::all();
+            $pesertas = User::where('id_role', 4)->get();
             foreach ($pesertas as $peserta) {
                 Absensi::create([
                     'user_id' => $peserta->id,
@@ -95,7 +95,7 @@ class JadwalController extends Controller
     public function edit(Jadwal $jadwal)
     {
         return view('admin.jadwal.edit', [
-            'jadwal' => $jadwal
+            'jadwal' => Jadwal::with('absensi')->where('id', $jadwal->id)->first()
         ]);
     }
 
@@ -108,8 +108,6 @@ class JadwalController extends Controller
      */
     public function update(Request $request, Jadwal $jadwal, Absensi $absensi)
     {
-        Absensi::where('jadwal_id', $request->id)->delete();
-
         $jadwal = Jadwal::where('id', $jadwal->id)->update([
             'nama_sambung' => $request->nama_sambung,
             'tanggal' => $request->tanggal,
@@ -127,30 +125,36 @@ class JadwalController extends Controller
         ]);
 
         if ($request->peserta == 'all') {
-            $pesertas = User::all();
+            $pesertas = User::where('id_role', 4)->get();
             foreach ($pesertas as $peserta) {
-                Absensi::create([
-                    'user_id' => $peserta->id,
-                    'jadwal_id' => $request->id
-                ]);
+                if (Absensi::where('user_id',  $peserta->id)->first() == null) {
+                    Absensi::create([
+                        'user_id' => $peserta->id,
+                        'jadwal_id' => $jadwal->id
+                    ]);
+                }
             }
         } else if ($request->peserta == 'ibu') {
             $pesertas = User::where([['jenis_kelamin', 'P'], ['status_pernikahan', 'menikah']])
                 ->orWhere('status_pernikahan', 'janda')->get();
             die();
             foreach ($pesertas as $peserta) {
-                Absensi::create([
-                    'user_id' => $peserta->id,
-                    'jadwal_id' => $request->id
-                ]);
+                if (Absensi::where('user_id',  $peserta->id)->first() == null) {
+                    Absensi::create([
+                        'user_id' => $peserta->id,
+                        'jadwal_id' => $jadwal->id
+                    ]);
+                }
             }
         } else if ($request->peserta == 'remaja') {
             $pesertas = User::where('status_pernikahan', 'lajang')->get();
             foreach ($pesertas as $peserta) {
-                Absensi::create([
-                    'user_id' => $peserta->id,
-                    'jadwal_id' => $request->id
-                ]);
+                if (Absensi::where('user_id',  $peserta->id)->first() == null) {
+                    Absensi::create([
+                        'user_id' => $peserta->id,
+                        'jadwal_id' => $jadwal->id
+                    ]);
+                }
             }
         }
 

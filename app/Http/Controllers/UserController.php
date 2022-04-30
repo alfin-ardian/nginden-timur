@@ -86,23 +86,26 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        User::where('id', $user->id)->update([
-            'name' => $request->name,
-            'password' => bcrypt($request->password),
-            'wa' => $request->wa,
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'alamat' => $request->alamat,
-            'pekerjaan' => $request->pekerjaan,
-            'pendidikan' => $request->pendidikan,
-            'foto' => $request->foto,
-            'status' => $request->status,
-            'id_role' => $request->id_role,
-            'id_dapukan' => $request->id_dapukan,
-            'status_pernikahan' => $request->status_pernikahan
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'wa' => 'required',
+            'email' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
+            // 'tanggal_lahir' => $request->tanggal_lahir,
+            'alamat' => 'required',
+            'pekerjaan' => 'required',
+            'pendidikan' => 'required',
+            // 'foto' => $request->foto,
+            'status' => 'required',
+            'id_role' => 'required',
+            'id_dapukan' => 'required',
+            'status_pernikahan' => 'required'
         ]);
+
+        $validatedData['password'] = $request->password;
+
+        $user->update($validatedData);
 
         return redirect('/admin/user')->with('success', 'Berhasil mengupdate Data');
     }

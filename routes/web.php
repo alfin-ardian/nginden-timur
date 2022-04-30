@@ -57,7 +57,7 @@ Route::prefix('personal')->group(function () {
     Route::get('/riwayat', function () {
         return view('personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
-                return $query->where('user_id', Auth::user()->id)->first();
+                return $query->where('user_id', Auth::user()->id)->get();
             }])->whereMonth('created_at', 4)
                 ->get()
         ]);

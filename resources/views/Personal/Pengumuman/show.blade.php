@@ -12,7 +12,7 @@
              <div class="card-body">
                  <h3 class="card-title font-weight-bold">{{ $pengumuman->judul }}</h3>
                  <p class="card-text"><small class="text-muted"><i>Oleh : {{ $pengumuman->penulis }} - {{ $pengumuman->created_at->diffForHumans() }}</i></small></p>
-                 <p class="card-text">{{ $pengumuman->excerpt }}</p>
+                 <p class="card-text">{!! $pengumuman->isi !!}</p>
              </div>
             </div>
          </div>

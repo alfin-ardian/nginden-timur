@@ -8,7 +8,6 @@ use Illuminate\Support\Carbon;
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
     </div>
-    {{-- {{ dd($jadwal) }} --}}
     <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
