@@ -39,43 +39,43 @@
                             <form class="user" action="/register" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-user" name="name"
+                                    <input type="text" class="form-control @error('name') is-invalid @enderror form-control-user" name="name"
                                         placeholder="Nama">
+                                        @error('name')
+                                        <div class="invalid-feedback">
+                                           Nama tidak boleh kosong
+                                        </div>
+                                        @enderror
                                 </div>
-                                @error('name')
-                                <div class="invalid-feedback">
-                                   Nama tidak boleh kosong
-                                </div>
-                                @enderror
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="email" class="form-control form-control-user" name="email"
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror form-control-user" name="email"
                                             placeholder="Email">
+                                            @error('email')
+                                            <div class="invalid-feedback">
+                                               Email tidak boleh kosong
+                                            </div>
+                                            @enderror
                                     </div>
                                     <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" name="wa"
+                                        <input type="text" class="form-control @error('wa') is-invalid @enderror form-control-user" name="wa"
                                             placeholder="Whatsapp">
+                                            @error('wa')
+                                            <div class="invalid-feedback">
+                                               Nomor whatsapp tidak boleh kosong
+                                            </div>
+                                            @enderror
                                     </div>
                                 </div>
-                                @error('email')
-                                <div class="invalid-feedback">
-                                   Email tidak boleh kosong
-                                </div>
-                                @enderror
-                                @error('wa')
-                                <div class="invalid-feedback">
-                                   Password tidak boleh kosong
-                                </div>
-                                @enderror
                                 <div class="form-group">
-                                    <input type="password" class="form-control form-control-user" name="password"
+                                    <input type="password" class="form-control @error('password') is-invalid @enderror form-control-user" name="password"
                                         placeholder="Password">
+                                        @error('password')
+                                        <div class="invalid-feedback">
+                                           Password tidak boleh kosong
+                                        </div>
+                                        @enderror
                                 </div>
-                                @error('password')
-                                <div class="invalid-feedback">
-                                   Password tidak boleh kosong
-                                </div>
-                                @enderror
                                 <button class="btn btn-primary btn-user btn-block" type="submit">Daftar</button>
                                 <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">

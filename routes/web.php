@@ -1,8 +1,6 @@
 <?php
 
-use App\Models\User;
 use App\Models\Jadwal;
-use App\Models\Pengumuman;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -34,7 +32,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store']);
 
-Route::prefix('admin')->group(function () {
+Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/', function () {
         return view('admin.index', [
             'jadwal' => Jadwal::with('absensi.user')
@@ -49,27 +47,11 @@ Route::prefix('admin')->group(function () {
     Route::resource('/pengumuman', PengumumanController::class);
 });
 
-Route::prefix('personal')->group(function () {
-    // Route::resource('/', PersonalController::class);
+Route::middleware(['auth'])->prefix('personal')->group(function () {
     Route::get('/', [PersonalController::class, 'index']);
     Route::put('/', [PersonalController::class, 'update']);
     Route::resource('/user', PersonalUserController::class);
-    Route::get('/riwayat', function () {
-        return view('personal.riwayat', [
-            'jadwals' => Jadwal::with(['absensi' => function ($query) {
-                return $query->where('user_id', Auth::user()->id)->get();
-            }])->whereMonth('created_at', 4)
-                ->get()
-        ]);
-    });
-    Route::get('/pengumuman', function () {
-        return view('personal.pengumuman.index', [
-            'pengumumans' => Pengumuman::all()
-        ]);
-    });
-    Route::get('/pengumuman/{id}', function ($id) {
-        return view('personal.pengumuman.show', [
-            'pengumuman' => Pengumuman::find($id)
-        ]);
-    });
+    Route::get('/riwayat', [PersonalController::class, 'riwayat']);
+    Route::get('/pengumuman', [PersonalController::class, 'pengumuman']);
+    Route::get('/pengumuman/{id}', [PersonalController::class, 'pengumumanDetail']);
 });

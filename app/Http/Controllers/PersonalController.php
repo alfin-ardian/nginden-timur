@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
-use App\Models\User;
 use App\Models\Jadwal;
 use App\Models\Absensi;
+use App\Models\Pengumuman;
 
 class PersonalController extends Controller
 {
@@ -76,5 +76,29 @@ class PersonalController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function riwayat()
+    {
+        return view('personal.riwayat', [
+            'jadwals' => Jadwal::with(['absensi' => function ($query) {
+                return $query->where('user_id', Auth::user()->id)->get();
+            }])->whereMonth('created_at', 4)
+                ->get()
+        ]);
+    }
+
+    public function pengumuman()
+    {
+        return view('personal.pengumuman.index', [
+            'pengumumans' => Pengumuman::all()
+        ]);
+    }
+
+    public function pengumumanDetail($id)
+    {
+        return view('personal.pengumuman.show', [
+            'pengumuman' => Pengumuman::find($id)
+        ]);
     }
 }

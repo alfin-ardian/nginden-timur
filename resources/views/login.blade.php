@@ -51,23 +51,23 @@
                                     <form class="user" action="/login" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" name="email"
+                                            <input type="text" class="form-control @error('email') is-invalid @enderror form-control-user" name="email"
                                                 placeholder="Masukan email atau whatsapp">
+                                                @error('email')
+                                                    <div class="invalid-feedback">
+                                                    Email atau Whatsapp tidak boleh kosong
+                                                    </div>
+                                                @enderror
                                         </div>
-                                        @error('email')
-                                            <div class="invalid-feedback">
-                                            Email atau Whatsapp tidak boleh kosong
-                                            </div>
-                                        @enderror
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user"
+                                            <input type="password" class="form-control @error('password') is-invalid @enderror form-control-user"
                                                 name="password" placeholder="Password">
+                                                @error('password')
+                                                    <div class="invalid-feedback">
+                                                    Password tidak boleh kosong
+                                                    </div>
+                                                @enderror
                                         </div>
-                                        @error('password')
-                                            <div class="invalid-feedback">
-                                            Password tidak boleh kosong
-                                            </div>
-                                        @enderror
                                         <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
                                         {{-- <hr>
                                         <a href="index.html" class="btn btn-google btn-user btn-block">

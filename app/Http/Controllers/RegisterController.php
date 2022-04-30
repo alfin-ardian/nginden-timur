@@ -18,7 +18,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'password' => ['required', 'string'],
             'email' => ['string', 'email', 'max:255', 'unique:users'],
-            'wa' => ['unique:users']
+            'wa' => ['unique:users', 'required']
         ]);
 
         $validatedData['password'] = bcrypt($validatedData['password']);
