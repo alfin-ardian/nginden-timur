@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Roles;
 use App\Models\Dapukan;
 use Illuminate\Http\Request;
 
@@ -73,7 +74,8 @@ class UserController extends Controller
     {
         return view('admin.user.edit', [
             'user' => $user,
-            'dapukan' => Dapukan::all()
+            'dapukan' => Dapukan::all(),
+            'role' => Roles::all()
         ]);
     }
 

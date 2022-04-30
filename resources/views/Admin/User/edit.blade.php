@@ -15,14 +15,30 @@
                 <div class="col-md-6">
                   <label class="form-label">Nama</label>
                   <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$user->name) }} ">
-                  <input type="hidden" class="form-control" name="id_role" value="4">
                   @error('name')
                   <div class="invalid-feedback">
                       Nama tidak boleh kosong
                   </div>
                   @enderror
                 </div>
+                @if(Auth::user()->id_role == 1)
                 <div class="col-md-6">
+                  <label class="form-label">Role</label>
+                  <select class="form-control @error('id_role') is-invalid @enderror" name="id_role" required>
+                    <option value="" selected>Role</option>
+                    @foreach ($role as $data)
+                    @if(old('id_role',$user->id_role) == $data->id_role)
+                    <option value="{{ $data->id_role }}" selected>{{ $data->name }}</option>
+                    @else
+                    <option value="{{ $data->id_role }}">{{ $data->name }}</option>
+                    @endif
+                    @endforeach
+                  </select>
+                </div>
+                @else
+                <input type="hidden" name="id_role" value="4">
+                @endif
+                <div class="col-md-6 mt-3">
                     <label class="form-label">Password <a href="#" onclick="return myFunction()">lihat</a></label>
                     <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password',$user->password) }}" required>
                     @error('password')
@@ -235,7 +251,7 @@
                   @enderror
                 </div>
                 <div class="col-md-6 mt-3">
-                  <label for="inputEmail4" class="form-label">Dapukan</label>
+                  <label class="form-label">Dapukan</label>
                   <select class="form-control @error('id_dapukan') is-invalid @enderror" name="id_dapukan" required>
                     <option value="" selected>pilih dapukan</option>
                     @foreach ($dapukan as $data)

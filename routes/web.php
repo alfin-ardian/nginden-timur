@@ -12,6 +12,7 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PengumumanController;
 use App\Http\Controllers\PersonalUserController;
 
@@ -27,10 +28,10 @@ use App\Http\Controllers\PersonalUserController;
 */
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store']);
+Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/', function () {
@@ -55,3 +56,5 @@ Route::middleware(['user'])->prefix('personal')->group(function () {
     Route::get('/pengumuman', [PersonalController::class, 'pengumuman']);
     Route::get('/pengumuman/{id}', [PersonalController::class, 'pengumumanDetail']);
 });
+
+Route::resource('/admin/role', RolesController::class)->middleware('superAdmin');

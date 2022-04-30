@@ -64,5 +64,14 @@
             <span>Blast Email</span>
         </a>
     </li> --}}
+    @if(Auth::user()->id_role == 1)
+    <hr class="sidebar-divider my-0">
+    <li class="nav-item {{ Request::is('admin/role*') ? 'active' : ''}}">
+        <a class="nav-link collapsed" href="/admin/role">
+            <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+            <span>Role</span>
+        </a>
+    </li>
+    @endif
 </ul>
 <!-- End of Sidebar -->
