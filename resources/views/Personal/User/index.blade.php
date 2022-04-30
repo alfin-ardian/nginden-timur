@@ -13,6 +13,7 @@
     </div>
     <p>Data Akun Saya</p>
     <a class="btn btn-info mb-2" href="/personal/user/{{ $user->id }}/edit"><i class="bi bi-pencil-square"></i> Edit</a>
+    <a class="btn btn-danger mb-2" href="#" data-toggle="modal" data-target="#logoutModal"><i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>Keluar</a>
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
         {{ session('success') }}
@@ -118,5 +119,27 @@
             </div>
         </div>
     </div>
+</div>
+ <!-- Logout Modal-->
+ <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+ aria-hidden="true">
+ <div class="modal-dialog" role="document">
+     <div class="modal-content">
+         <div class="modal-header">
+             <h5 class="modal-title" id="exampleModalLabel">Yakin ingin keluar?</h5>
+             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">×</span>
+             </button>
+         </div>
+         <div class="modal-body">Klik Keluar jika anda yakin ingin keluar</div>
+         <div class="modal-footer">
+             <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+             <form action="/logout" method="post">
+                 @csrf
+                 <button class="btn btn-danger">Keluar <span data-feather="log-out"></span></button>
+             </form>
+         </div>
+     </div>
+ </div>
 </div>
 @endsection
