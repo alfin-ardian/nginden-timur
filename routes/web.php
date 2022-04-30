@@ -26,7 +26,7 @@ use App\Http\Controllers\PersonalUserController;
 |
 */
 
-Route::get('/', [LoginController::class, 'index'])->middleware('guest')->name('login');
+Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
@@ -47,7 +47,7 @@ Route::middleware('admin')->prefix('admin')->group(function () {
     Route::resource('/pengumuman', PengumumanController::class);
 });
 
-Route::middleware(['auth'])->prefix('personal')->group(function () {
+Route::middleware(['user'])->prefix('personal')->group(function () {
     Route::get('/', [PersonalController::class, 'index']);
     Route::put('/', [PersonalController::class, 'update']);
     Route::resource('/user', PersonalUserController::class);

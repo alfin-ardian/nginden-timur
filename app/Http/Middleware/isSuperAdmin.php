@@ -4,9 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class isAdmin
+class isSuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,10 +16,8 @@ class isAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->id_role == 4) {
-            return redirect('/personal');
-        } elseif (!Auth::check()) {
-            return redirect('/');
+        if (!$request->user()->id_role == 1) {
+            return $next($request);
         }
         return $next($request);
     }
