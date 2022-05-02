@@ -39,9 +39,9 @@ use Illuminate\Support\Carbon;
                   <p> Waktu Absen : {{ Carbon::parse($jadwal->absensi[0]['waktu_absen'])->format('H:i:s') }}</p> </p>
                   @endif
                   @if(empty($jadwal->absensi[0]['presensi']))
-                  <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalMd">Absen Sekarang</a>
+                  <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalMd" id="btnLoading">Absen Sekarang</a>
                   @else
-                  <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalMd">Ubah</a>
+                  <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalMd" id="btnLoading">Ubah</a>
                   @endif
                 </div>
                 <div class="card-footer text-muted">
@@ -88,6 +88,8 @@ use Illuminate\Support\Carbon;
             <div class="modal-body">
                 <form class="row g-3" id="formedit" action="/personal">
                     @csrf
+                    <input type="hidden" name="_method" value="PUT">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         <label class="form-label">Presensi</label>
                         <select class="form-control" name="presensi" value="{{ old('status') }}" id="presensi" onchange="changeplh()" required>
@@ -107,6 +109,12 @@ use Illuminate\Support\Carbon;
                         <input id="keterangan" type="text" default placeholder="contoh Offline" rows="3" class="form-control" name="keterangan" value="{{ old('keterangan') }}" required>
                       </div>
                 </form>
+                <div class="d-flex justify-content-center mt-4" id="btnLoading" hidden>
+                    <div class="spinner-border text-info" role="status">
+                      <span class="sr-only">Amal sholih tunggu sebentar...</span>
+                    </div>
+                </div>
+                <p class="card-text d-flex justify-content-center mt-2" id="btnLoading">Amal sholih tunggu sebentar...</p>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -117,6 +125,10 @@ use Illuminate\Support\Carbon;
     </div>
 </div>
 <script>
+$(document).ready(function(){
+    $('#btnLoading').hide();
+});
+$("#btnLoading").hide();
 function changeplh(){
  var sel = document.getElementById("presensi");
     var textbx = document.getElementById("keterangan");
@@ -141,15 +153,17 @@ function customModalSubmitFunction(){
     $.ajax({
         type: "PUT",
         url: "/personal",
+        dataType: 'json',
         data: $('form').serialize(),
         error : function(XMLHttpRequest, textStatus, errorThrown){
             $('#modalMd').modal('hide');
+            $('#btnLoading').hide();
             location.reload();
         },
         success: function(html){
             $('#modalMd').modal('hide');
             location.reload();
-        }
+        },
     });
 };
 </script>
