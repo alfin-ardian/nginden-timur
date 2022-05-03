@@ -6,9 +6,9 @@ use Illuminate\Support\Carbon;
 ?>
 <div class="container-fluid mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Halaman Beranda</h1>
+        <h1 class="h3 mb-0 text-gray-800">Halaman Beranda baru</h1>
     </div>
-    <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
+    <p>Jadwal Hari ini baru: {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     @if(session()->has('success'))
     <div class="alert alert-success col-lg-12 mr-2 mt-3" role="alert">
         {{ session('success') }}
@@ -86,29 +86,38 @@ use Illuminate\Support\Carbon;
             <h5 class="modal-title" id="exampleModalLabel">Absensi Sambung Kelompok</h5>
             </div>
             <div class="modal-body">
-                <form class="row g-3" id="formedit" action="/personal">
+                <form class="row g-3" id="formedit" action="/personal" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="_method" value="PUT">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="col-md-12">
                         <label class="form-label">Presensi</label>
-                        <select class="form-control" name="presensi" value="{{ old('status') }}" id="presensi" onchange="changeplh()" required>
+                        <select class="form-control @error('presensi') is-invalid @enderror" name="presensi" value="{{ old('status') }}" id="presensi" onchange="changeplh()" required>
                           <option selected value="">pilih presensi</option>
                           <option value="H">Hadir</option>
                           <option value="I">Izin</option>
                           <option value="S">Sakit</option>
                         </select>
+                        @error('presensi')
+                        <div class="invalid-feedback">
+                            Silakan pilih salah satu
+                        </div>
+                        @enderror
                       </div>
                       @if(isset($jadwal->absensi))
                       <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                       <input type="hidden" class="form-control" id="jadwal_id" name="jadwal_id" value="{{ $jadwal->id }}">
-                      <input type="hidden" class="form-control" id="jadwal_id" name="id" value="{{ $jadwal->absensi[0]['id'] }}">
+                      <input type="hidden" class="form-control" id="id" name="id" value="{{ $jadwal->absensi[0]['id'] }}">
                       @endif
                       <div class="col-md-12 mt-2">
-                        <label class="form-label">Keterangan</label>
+                        <label class="form-label @error('keterangan') is-invalid @enderror">Keterangan</label>
                         <input id="keterangan" type="text" default placeholder="contoh Offline" rows="3" class="form-control" name="keterangan" value="{{ old('keterangan') }}" required>
+                        @error('keterangan')
+                        <div class="invalid-feedback">
+                            Keterangan tidak boleh kosong
+                        </div>
+                        @enderror
                       </div>
-                </form>
                 <div class="d-flex justify-content-center mt-4" id="btnLoading" hidden>
                     <div class="spinner-border text-info" role="status">
                       <span class="sr-only">Amal sholih tunggu sebentar...</span>
@@ -118,53 +127,78 @@ use Illuminate\Support\Carbon;
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-            <button type="button" id="submit-edit" class="btn btn-info" onclick="customModalSubmitFunction()">Simpan</button>
+            <button type="button" id="formSubmit" class="btn btn-info">Simpan</button>
+            </form>
             </div>
         </div>
         </div>
     </div>
 </div>
 <script>
-$(document).ready(function(){
-    $('#btnLoading').hide();
-});
-$("#btnLoading").hide();
-function changeplh(){
- var sel = document.getElementById("presensi");
-    var textbx = document.getElementById("keterangan");
-    var indexe = sel.selectedIndex;
+        function changeplh(){
+        var sel = document.getElementById("presensi");
+            var textbx = document.getElementById("keterangan");
+            var indexe = sel.selectedIndex;
 
-    if(indexe == 0) {
-     $("#keterangan").attr("placeholder", "Tulis Keterangan");
+            if(indexe == 0) {
+            $("#keterangan").attr("placeholder", "Tulis Keterangan");
 
-    }
-    if(indexe == 1) {
-     $("#keterangan").attr("placeholder", "Contoh : Offline");
-    }
-    if(indexe == 2) {
-     $("#keterangan").attr("placeholder", "Contoh : Lembur kerja");
-    }
-    if(indexe == 3) {
-     $("#keterangan").attr("placeholder", "Contoh : Pusing");
-    }
-}
+            }
+            if(indexe == 1) {
+            $("#keterangan").attr("placeholder", "Contoh : Hadir Di masjid");
+            }
+            if(indexe == 2) {
+            $("#keterangan").attr("placeholder", "Contoh : Lembur kerja");
+            }
+            if(indexe == 3) {
+            $("#keterangan").attr("placeholder", "Contoh : Pusing");
+            }
+        }
+    $(document).ready(function(){
+        $('#formSubmit').click(function(e){
+            if($('#presensi').val() == ''){
+                alert('Silakan pilih salah satu presensi (tidak boleh kosong)');
+                return false;
+            }else if ($('#keterangan').val() == ''){
+                alert('Silakan isi keterangan (keterangan tidak boleh kosong)');
+                return false;
+            }
+            e.preventDefault();
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: "{{ url('/personal') }}",
+                method: 'put',
+                data: {
+                    presensi: $('#presensi').val(),
+                    keterangan: $('#keterangan').val(),
+                    id: $('#id').val(),
+                    user_id: $('#user_id').val(),
+                    jadwal_id: $('#jadwal_id').val(),
+                },
+                success: function(result){
+                    if(result.errors)
+                    {
+                        $('.alert-danger').html('');
 
-function customModalSubmitFunction(){
-    $.ajax({
-        type: "PUT",
-        url: "/personal",
-        dataType: 'json',
-        data: $('form').serialize(),
-        error : function(XMLHttpRequest, textStatus, errorThrown){
-            $('#modalMd').modal('hide');
-            $('#btnLoading').hide();
+                        $.each(result.errors, function(key, value){
+                            $('.alert-danger').show();
+                            $('.alert-danger').append('<li>'+value+'</li>');
+                        });
+                    }
+                    else
+                    {
+                        $('.alert-danger').hide();
+                        $('#exampleModal').modal('hide');
+                    }
+                }
+            });
+            alert('Selamat! anda berhasil melakukan presensi');
             location.reload();
-        },
-        success: function(html){
-            $('#modalMd').modal('hide');
-            location.reload();
-        },
+        });
     });
-};
 </script>
 @endsection

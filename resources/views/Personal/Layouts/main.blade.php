@@ -19,7 +19,10 @@
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
     <!-- Custom styles for this template-->
+    <meta name="_token" content="{{csrf_token()}}" />
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha256-OFRAJNoaD8L3Br5lglV7VyLRf0itmoBzWUoM+Sji4/8=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -67,7 +70,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
                     <!-- Topbar Navbar -->
-                    <a href="/personal" class="text-decoration-none">DATA CENTER</a>
+                    <a href="/personal" class="text-decoration-none">DATA CENTERnya</a>
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Alerts -->
                         {{-- <li class="nav-item dropdown no-arrow mx-1">

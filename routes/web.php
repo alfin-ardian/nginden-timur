@@ -28,9 +28,9 @@ use App\Http\Controllers\PersonalUserController;
 
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout']);
-Route::post('/login', [LoginController::class, 'authenticate'])->middleware('guest');
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::get('/register', [RegisterController::class, 'index']);
+Route::post('/register', [RegisterController::class, 'store']);
 
 Route::middleware(['user'])->prefix('personal')->group(function () {
     Route::get('/', [PersonalController::class, 'index']);

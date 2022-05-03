@@ -21,8 +21,6 @@ class LoginController extends Controller
             'password' => 'required',
         ]);
 
-        // return $request;
-
         if (
             Auth::attempt(['email' => $request->email, 'password' => $request->password])
             || Auth::attempt(['wa' => $request->email, 'password' => $request->password])
@@ -34,13 +32,9 @@ class LoginController extends Controller
             if (Auth::user()->id_role == 1 || Auth::user()->id_role == 2) {
                 return redirect('/admin');
             } else {
-                return redirect()->intended('/personal');
+                return redirect('/personal');
             }
         }
-
-        // if (Auth::attempt($credentials)) {
-
-        // }
 
         return back()->withErrors([
             'email' => 'Email atau password salah',

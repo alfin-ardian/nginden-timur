@@ -56,15 +56,17 @@ class PersonalController extends Controller
      */
     public function update(Request $request)
     {
-        Absensi::where('id', $request->id)->update([
-            'presensi' => $request->presensi,
-            'keterangan' => $request->keterangan,
-            'waktu_absen' => date('Y-m-d H:i:s'),
-            'user_id' => $request->user_id,
-            'jadwal_id' => $request->jadwal_id
+        // return $request;
+        $validatedData = $request->validate([
+            'presensi' => 'required',
+            'keterangan' => 'required',
         ]);
 
-        return redirect('/personal')->with('success', 'Selamat, Absensi Telah Berhasil');
+        $validatedData['waktu_absen'] = date('Y-m-d H:i:s');
+        $validatedData['user_id'] = Auth::user()->id;
+        $validatedData['jadwal_id'] = $request->jadwal_id;
+
+        return Absensi::where('id', $request->id)->update($validatedData);
     }
 
     /**
