@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Roles;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreRolesRequest;
 use App\Http\Requests\UpdateRolesRequest;
 
@@ -27,7 +28,9 @@ class RolesController extends Controller
      */
     public function create()
     {
-        //
+        return view('superAdmin.role.create', [
+            'roles' => Roles::all()
+        ]);
     }
 
     /**
@@ -36,9 +39,11 @@ class RolesController extends Controller
      * @param  \App\Http\Requests\StoreRolesRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRolesRequest $request)
+    public function store(Request $request)
     {
-        //
+        Roles::create($request->all());
+
+        return redirect('/admin/role')->with('success', 'Berhasil menambah Data');
     }
 
     /**
