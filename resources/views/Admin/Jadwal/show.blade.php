@@ -54,7 +54,7 @@
                     <label for="inputAddress" class="form-label">Jenis Peserta : {{ $jadwal->peserta }}</label>
                 </div>
               </form>
-              <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Absen</a></button>
+              {{-- <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Absen</a></button>
               <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Hadir Semua</a></button>
               <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Kembali</a></button>
               <button type="button" class="btn btn-outline-primary"><a href="#" class="text-decoration-none"><i class="fas fa-edit"></i>Simpan</a></button>
@@ -90,7 +90,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
         </div>
     </div>
 
