@@ -1,4 +1,4 @@
-@extends('personal.layouts.main')
+@extends('Personal.Layouts.main')
 @section('container')
 <div class="container-fluid mb-4 mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

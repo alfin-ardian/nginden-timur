@@ -43,7 +43,7 @@ Route::middleware(['user'])->prefix('personal')->group(function () {
 
 Route::middleware('admin')->prefix('admin')->group(function () {
     Route::get('/', function () {
-        return view('admin.index', [
+        return view('Admin.index', [
             'jadwal' => Jadwal::with('absensi.user')
                 ->where('tanggal', date('Y-m-d'))
                 ->first()

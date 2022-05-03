@@ -44,7 +44,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('admin.layouts.sidebar')
+        @include('Admin.Layouts.sidebar')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

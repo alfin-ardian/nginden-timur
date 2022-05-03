@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Laravel Bootstrap Modal Form Validation Example - NiceSnippets.com</title>
+    <title>Data Center - Nginden Timur</title>
     <meta name="_token" content="{{csrf_token()}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha256-aAr2Zpq8MZ+YA/D6JtRD3xtrwpEz2IqOS+pWD/7XKIw=" crossorigin="anonymous" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
@@ -12,7 +12,7 @@
         <div class="col-md-8 offset-2 mt-5">
             <div class="card">
                 <div class="card-header bg-info">
-                    <h5 class="text-white text-center">Laravel Bootstrap Modal Form Validation Example - NiceSnippets.com</h5>
+                    <h5 class="text-white text-center">Data Center - Nginden Timur</h5>
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

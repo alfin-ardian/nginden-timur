@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('Admin.Layouts.main')
 
 <style>
  .btn-outline-primary:hover{

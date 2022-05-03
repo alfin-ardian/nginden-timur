@@ -1,4 +1,4 @@
-@extends('personal.layouts.main')
+@extends('Personal.Layouts.main')
 @section('container')
 <?php
 use Illuminate\Support\Carbon;

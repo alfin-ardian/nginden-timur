@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('Admin.Layouts.main')
 
 @section('container')
 <?php

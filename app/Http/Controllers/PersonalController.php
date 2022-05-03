@@ -19,7 +19,7 @@ class PersonalController extends Controller
 
     public function index()
     {
-        return view('personal.index', [
+        return view('Personal.index', [
             'jadwal' => Jadwal::with(['absensi' => function ($query) {
                 $query->where('user_id', Auth::user()->id)->first();
             }])
@@ -82,7 +82,7 @@ class PersonalController extends Controller
 
     public function riwayat()
     {
-        return view('personal.riwayat', [
+        return view('Personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
                 return $query->where('user_id', Auth::user()->id)->get();
             }])->whereMonth('created_at', date('m'))
@@ -92,14 +92,14 @@ class PersonalController extends Controller
 
     public function pengumuman()
     {
-        return view('personal.pengumuman.index', [
+        return view('Personal.Pengumuman.index', [
             'pengumumans' => Pengumuman::all()
         ]);
     }
 
     public function pengumumanDetail($id)
     {
-        return view('personal.pengumuman.show', [
+        return view('Personal.Pengumuman.show', [
             'pengumuman' => Pengumuman::find($id)
         ]);
     }
