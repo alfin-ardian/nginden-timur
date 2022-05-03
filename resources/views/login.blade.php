@@ -74,11 +74,11 @@
                                         </a> --}}
                                     </form>
                                     <hr>
-                                    <div class="text-center">
+                                    {{-- <div class="text-center">
                                         <a class="small" href="forgot-password.html">Lupa Password</>?</a>
-                                    </div>
+                                    </div> --}}
                                     <div class="text-center">
-                                        <a class="small" href="/register">Daftar Akun</a>
+                                        <a class="small" href="/register">Belum punya akun? Daftar akun disini</a>
                                     </div>
                                 </div>
                             </div>

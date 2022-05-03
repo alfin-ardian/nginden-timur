@@ -77,10 +77,10 @@
                                         @enderror
                                 </div>
                                 <button class="btn btn-primary btn-user btn-block" type="submit">Daftar</button>
-                                <hr>
+                                {{-- <hr>
                                 <a href="index.html" class="btn btn-google btn-user btn-block">
                                     <i class="fab fa-google fa-fw"></i> Daftar dengan Google
-                                </a>
+                                </a> --}}
                             </form>
                             <div class="text-center">
                                 <a class="small" href="/">Sudah punya akun? Login Disini!</a>
