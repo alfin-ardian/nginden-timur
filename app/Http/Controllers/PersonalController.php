@@ -85,7 +85,7 @@ class PersonalController extends Controller
         return view('personal.riwayat', [
             'jadwals' => Jadwal::with(['absensi' => function ($query) {
                 return $query->where('user_id', Auth::user()->id)->get();
-            }])->whereMonth('created_at', 4)
+            }])->whereMonth('created_at', date('m'))
                 ->get()
         ]);
     }

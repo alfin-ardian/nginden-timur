@@ -70,7 +70,7 @@
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow fixed-top">
                     <!-- Topbar Navbar -->
-                    <a href="/personal" class="text-decoration-none">DATA CENTERnya</a>
+                    <a href="/personal" class="text-decoration-none">DATA CENTER</a>
                     <ul class="navbar-nav ml-auto">
                         <!-- Nav Item - Alerts -->
                         {{-- <li class="nav-item dropdown no-arrow mx-1">

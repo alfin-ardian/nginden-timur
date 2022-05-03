@@ -118,12 +118,6 @@ use Illuminate\Support\Carbon;
                         </div>
                         @enderror
                       </div>
-                <div class="d-flex justify-content-center mt-4" id="btnLoading" hidden>
-                    <div class="spinner-border text-info" role="status">
-                      <span class="sr-only">Amal sholih tunggu sebentar...</span>
-                    </div>
-                </div>
-                <p class="card-text d-flex justify-content-center mt-2" id="btnLoading">Amal sholih tunggu sebentar...</p>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
