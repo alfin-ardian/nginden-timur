@@ -17,6 +17,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(30)->create();
+
+        User::create([
+            'name' => 'Rokyah',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'wa' => '081234123412',
+            'id_role' => 1,
+            'id_dapukan' => 1
+        ]);
+
         Dapukan::create([
             'nama' => 'Rokyah',
             'keterangan' => 'Jamaah yang berada di dapukan ini adalah yang berada di dapukan Rokyah'

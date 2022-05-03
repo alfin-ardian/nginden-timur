@@ -13,7 +13,6 @@ use Illuminate\Support\Carbon;
     </div>
             <p>Jadwal Hari ini : {{   Carbon::parse(date('Y-m-d H:i:s'))->translatedFormat('l, d F Y')}}</p>
     <div class="row">
-        {{-- {{ dd(Auth::user()) }} --}}
         @if($jadwal != null)
 
         <!-- Area Chart -->
@@ -107,6 +106,14 @@ use Illuminate\Support\Carbon;
                     <h6 class="m-0 font-weight-bold text-primary">Detail Presensi Kehadiran</h6>
                 </div>
                 <div class="card-body">
+                    {{-- <div class="row mt-2 mb-3">
+                        <div class="container-fluid">
+                            <form class="d-flex" action="/admin/user" method="get">
+                                <input class="form-control me-2 mr-1" type="search" name="search" placeholder="Cari..." aria-label="Search" value="{{ request('search') }}">
+                                <button class="btn btn-outline-info" type="submit">Cari</button>
+                            </form>
+                        </div>
+                    </div> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>

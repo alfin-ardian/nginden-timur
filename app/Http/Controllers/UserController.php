@@ -16,8 +16,14 @@ class UserController extends Controller
      */
     public function index()
     {
+        $users = User::with(['dapukannya'])->where('id_role', 4)->get();
+
+        if (request('search')) {
+            $users = User::where('name', 'like', '%' . request('search') . '%')->get();
+        }
+
         return view('admin.user.index', [
-            'users' => User::with(['dapukannya'])->where('id_role', 4)->get()
+            'users' => $users
         ]);
     }
 

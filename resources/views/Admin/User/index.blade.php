@@ -2,7 +2,6 @@
 
 @section('container')
 <div class="container-fluid">
-{{-- {{ dd($users) }} --}}
     <!-- Page Heading -->
     <h1 class="h3 mb-2 text-gray-800">Dashboard User</h1>
 
@@ -17,6 +16,14 @@
             {{ session('success') }}
         </div>
         @endif
+        <div class="row mt-2">
+            <div class="container-fluid">
+                <form class="d-flex" action="/admin/user" method="get">
+                    <input class="form-control me-2 mr-1" type="search" name="search" placeholder="Cari..." aria-label="Search" value="{{ request('search') }}">
+                    <button class="btn btn-outline-info" type="submit">Cari</button>
+                </form>
+            </div>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
