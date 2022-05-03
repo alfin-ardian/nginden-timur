@@ -19,17 +19,18 @@ $hadirProsentase = 0;
 $izinProsentase = 0;
 $sakitProsentase = 0;
 $belumAbsenProsentase = 0;
-foreach($jadwals as $jadwal){
-$hadir += findTotal($jadwal->absensi,'H');
-$izin += findTotal($jadwal->absensi,'I');
-$sakit += findTotal($jadwal->absensi,'S');
-$belum_absen += findTotal($jadwal->absensi,null);
+if($jadwals->count() > 0) {
+    foreach($jadwals as $jadwal){
+    $hadir += findTotal($jadwal->absensi,'H');
+    $izin += findTotal($jadwal->absensi,'I');
+    $sakit += findTotal($jadwal->absensi,'S');
+    $belum_absen += findTotal($jadwal->absensi,null);
+    }
+    $hadirProsentase = ($hadir/$jadwals->count())*100;
+    $izinProsentase = ($izin/$jadwals->count())*100;
+    $sakitProsentase = ($sakit/$jadwals->count())*100;
+    $belumAbsenProsentase = ($belum_absen/$jadwals->count())*100;
 }
-$hadirProsentase = ($hadir/$jadwals->count())*100;
-$izinProsentase = ($izin/$jadwals->count())*100;
-$sakitProsentase = ($sakit/$jadwals->count())*100;
-$belumAbsenProsentase = ($belum_absen/$jadwals->count())*100;
-// dd($jadwals)
 ?>
 <div class="container-fluid mb-4 mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
