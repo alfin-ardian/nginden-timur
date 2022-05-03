@@ -54,7 +54,9 @@ class RolesController extends Controller
      */
     public function show(Roles $roles)
     {
-        //
+        return view('superAdmin.role.show', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -65,7 +67,10 @@ class RolesController extends Controller
      */
     public function edit(Roles $roles)
     {
-        //
+        return view('superAdmin.role.edit', [
+            'roles' => Roles::all(),
+            'role' => $roles
+        ]);
     }
 
     /**
@@ -75,9 +80,11 @@ class RolesController extends Controller
      * @param  \App\Models\Roles  $roles
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRolesRequest $request, Roles $roles)
+    public function update(Request $request, Roles $roles)
     {
-        //
+        $roles->update($request->all());
+
+        return redirect('/admin/role')->with('success', 'Berhasil mengubah Data');
     }
 
     /**
@@ -88,6 +95,8 @@ class RolesController extends Controller
      */
     public function destroy(Roles $roles)
     {
-        //
+        $roles->delete();
+
+        return redirect('/admin/role')->with('success', 'Berhasil menghapus Data');
     }
 }

@@ -11,11 +11,12 @@
             <button type="button" class="btn btn-outline-primary"><a href="/admin/role" class="text-decoration-none"><i class="bi bi-arrow-left"></i>Kembali</a></button>
         </div>
         <div class="card-body">
-            <form class="row g-3" method="post" action="/admin/role">
+            <form class="row g-3" method="post" action="/admin/role/{{ $role->id }}">
+                @method('put')
                 @csrf
                 <div class="col-md-6">
                   <label class="form-label">Nama</label>
-                  <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}">
+                  <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name',$role->name) }}">
                   @error('name')
                   <div class="invalid-feedback">
                       Nama tidak boleh kosong
@@ -24,7 +25,7 @@
                 </div>
                 <div class="col-md-6">
                     <label class="form-label">Keterangan</label>
-                    <input type="text" id="myInput" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{ old('keterangan') }}">
+                    <input type="text" id="myInput" class="form-control @error('keterangan') is-invalid @enderror" name="keterangan" value="{{ old('keterangan',$role->keterangan) }}">
                     @error('keterangan')
                     <div class="invalid-feedback">
                         Keterangan tidak boleh kosong
