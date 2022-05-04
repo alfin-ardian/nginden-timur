@@ -16,10 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::with(['dapukannya'])->where('id_role', 4)->get();
+        $users = User::with(['dapukannya'])->where('id_role', 4)->paginate(15);
 
         if (request('search')) {
-            $users = User::where('name', 'like', '%' . request('search') . '%')->get();
+            $users = User::where('name', 'like', '%' . request('search') . '%')->paginate(15);
         }
 
         return view('admin.user.index', [
