@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dapukan;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreDapukanRequest;
 use App\Http\Requests\UpdateDapukanRequest;
-use Illuminate\Http\Request;
 
 class DapukanController extends Controller
 {
@@ -16,7 +16,7 @@ class DapukanController extends Controller
      */
     public function index()
     {
-        return view('admin.dapukan.index', [
+        return view('Admin.Dapukan.index', [
             'dapukans' => Dapukan::all()
         ]);
     }
@@ -28,7 +28,7 @@ class DapukanController extends Controller
      */
     public function create()
     {
-        return view('admin.dapukan.create');
+        return view('Admin.Dapukan.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class DapukanController extends Controller
      */
     public function show(Dapukan $dapukan)
     {
-        return view('admin.dapukan.show', [
+        return view('Admin.Dapukan.show', [
             'dapukan' => $dapukan
         ]);
     }
@@ -69,7 +69,7 @@ class DapukanController extends Controller
      */
     public function edit(Dapukan $dapukan)
     {
-        return view('admin.dapukan.edit', [
+        return view('Admin.Dapukan.edit', [
             'dapukan' => $dapukan
         ]);
     }

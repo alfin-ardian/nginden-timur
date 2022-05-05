@@ -9,7 +9,7 @@ class RegisterController extends Controller
 {
     public function index()
     {
-        return view('register', ['title' => 'Register']);
+        return view('Register', ['title' => 'Register']);
     }
 
     public function store(Request $request)

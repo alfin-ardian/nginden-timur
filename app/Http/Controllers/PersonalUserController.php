@@ -16,7 +16,7 @@ class PersonalUserController extends Controller
      */
     public function index()
     {
-        return view('personal.user.index', [
+        return view('Personal.User.index', [
             'user' => User::where('id', Auth::user()->id)->first()
         ]);
     }
@@ -29,7 +29,7 @@ class PersonalUserController extends Controller
      */
     public function edit()
     {
-        return view('personal.user.edit', [
+        return view('Personal.User.edit', [
             'user' => User::where('id', Auth::user()->id)->first(),
             'dapukan' => Dapukan::all()
         ]);

@@ -16,7 +16,7 @@ class RolesController extends Controller
      */
     public function index()
     {
-        return view('superadmin.role.index', [
+        return view('SuperAdmin.Role.index', [
             'roles' => Roles::all()
         ]);
     }
@@ -28,7 +28,7 @@ class RolesController extends Controller
      */
     public function create()
     {
-        return view('superAdmin.role.create', [
+        return view('SuperAdmin.Role.create', [
             'roles' => Roles::all()
         ]);
     }
@@ -54,7 +54,7 @@ class RolesController extends Controller
      */
     public function show(Roles $roles)
     {
-        return view('superAdmin.role.show', [
+        return view('SuperAdmin.Role.show', [
             'roles' => $roles
         ]);
     }
@@ -67,7 +67,7 @@ class RolesController extends Controller
      */
     public function edit(Roles $roles)
     {
-        return view('superAdmin.role.edit', [
+        return view('SuperAdmin.Role.edit', [
             'roles' => Roles::all(),
             'role' => $roles
         ]);

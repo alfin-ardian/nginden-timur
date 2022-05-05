@@ -16,7 +16,7 @@ class SuperAdminController extends Controller
     public function index(User $superAdmin)
     {
         $users = User::where('id_role', '<>', 4)->with('roles')->get();
-        return view('superAdmin.user.index', [
+        return view('SuperAdmin.User.index', [
             'superAdmin' => $users,
             'users' => $users,
             'roles' => Roles::all()
@@ -30,7 +30,7 @@ class SuperAdminController extends Controller
      */
     public function create(User $user)
     {
-        return view('superAdmin.user.create', [
+        return view('SuperAdmin.User.create', [
             'users' => User::all(),
             'roles' => Roles::all()
         ]);
@@ -53,17 +53,6 @@ class SuperAdminController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\User  $user
@@ -71,8 +60,7 @@ class SuperAdminController extends Controller
      */
     public function edit(Request $request, User $superAdmin)
     {
-        // return $superAdmin;
-        return view('superAdmin.user.edit', [
+        return view('SuperAdmin.User.edit', [
             'user' => $superAdmin,
             'users' => User::all(),
             'roles' => Roles::all()

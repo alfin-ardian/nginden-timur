@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pengumuman;
-use App\Models\Jadwal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,7 +15,7 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        return view('admin.pengumuman.index', [
+        return view('Admin.Pengumuman.index', [
             'pengumumans' => Pengumuman::all()
         ]);
     }
@@ -28,7 +27,7 @@ class PengumumanController extends Controller
      */
     public function create()
     {
-        return view('admin.pengumuman.create');
+        return view('Admin.Pengumuman.create');
     }
 
     /**
@@ -61,7 +60,7 @@ class PengumumanController extends Controller
      */
     public function show(Pengumuman $pengumuman)
     {
-        return view('admin.pengumuman.show', [
+        return view('Admin.Pengumuman.show', [
             'pengumuman' => $pengumuman
         ]);
     }
@@ -74,7 +73,7 @@ class PengumumanController extends Controller
      */
     public function edit(Pengumuman $pengumuman)
     {
-        return view('admin.pengumuman.edit', [
+        return view('Admin.Pengumuman.edit', [
             'pengumuman' => $pengumuman
         ]);
     }

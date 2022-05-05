@@ -22,7 +22,7 @@ class UserController extends Controller
             $users = User::where('name', 'like', '%' . request('search') . '%')->paginate(15);
         }
 
-        return view('admin.user.index', [
+        return view('Admin.User.index', [
             'users' => $users
         ]);
     }
@@ -34,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        return view('Admin.User.create');
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('admin.user.show', [
+        return view('Admin.User.show', [
             'user' => User::with('absensis')->find($user->id)
         ]);
     }
@@ -78,7 +78,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('admin.user.edit', [
+        return view('Admin.User.edit', [
             'user' => $user,
             'dapukan' => Dapukan::all(),
             'role' => Roles::all()

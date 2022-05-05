@@ -69,17 +69,6 @@ class PersonalController extends Controller
         return Absensi::where('id', $request->id)->update($validatedData);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
     public function riwayat()
     {
         return view('Personal.riwayat', [

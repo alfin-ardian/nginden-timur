@@ -18,7 +18,7 @@ class JadwalController extends Controller
      */
     public function index()
     {
-        return view('admin.jadwal.index', [
+        return view('Admin.Jadwal.index', [
             'jadwals' => Jadwal::with('absensi')->get()
         ]);
     }
@@ -30,7 +30,7 @@ class JadwalController extends Controller
      */
     public function create()
     {
-        return view('admin.jadwal.create');
+        return view('Admin.Jadwal.create');
     }
 
     /**
@@ -81,7 +81,7 @@ class JadwalController extends Controller
      */
     public function show(Jadwal $jadwal)
     {
-        return view('admin.jadwal.show', [
+        return view('Admin.Jadwal.show', [
             'jadwal' => $jadwal->with('absensi')->first()
         ]);
     }
@@ -94,7 +94,7 @@ class JadwalController extends Controller
      */
     public function edit(Jadwal $jadwal)
     {
-        return view('admin.jadwal.edit', [
+        return view('Admin.Jadwal.edit', [
             'jadwal' => Jadwal::with('absensi')->where('id', $jadwal->id)->first()
         ]);
     }
@@ -108,8 +108,6 @@ class JadwalController extends Controller
      */
     public function update(Request $request, Jadwal $jadwal, Absensi $absensi)
     {
-
-        // return $request;
         $jadwal = Jadwal::where('id', $jadwal->id)->update([
             'nama_sambung' => $request->nama_sambung,
             'tanggal' => $request->tanggal,
