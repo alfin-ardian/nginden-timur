@@ -4,6 +4,7 @@ use App\Models\Jadwal;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\JadwalController;
@@ -11,8 +12,8 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DapukanController;
 use App\Http\Controllers\PersonalController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\PengumumanController;
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\PersonalUserController;
 
 /*
@@ -42,13 +43,9 @@ Route::middleware(['user'])->prefix('personal')->group(function () {
 });
 
 Route::middleware('admin')->prefix('admin')->group(function () {
-    Route::get('/', function () {
-        return view('Admin.index', [
-            'jadwal' => Jadwal::with('absensi.user')
-                ->where('tanggal', date('Y-m-d'))
-                ->first()
-        ]);
-    });
+    Route::resource('/', AdminController::class);
+    Route::get('/{id}/edit', [AdminController::class, 'edit']);
+    Route::put('/{id}', [AdminController::class, 'update']);
     Route::resource('/user', UserController::class);
     Route::resource('/dapukan', DapukanController::class);
     Route::resource('/jadwal', JadwalController::class);

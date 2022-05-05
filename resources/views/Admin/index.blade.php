@@ -99,21 +99,13 @@ use Illuminate\Support\Carbon;
 
         <!-- Content Column -->
         <div class="col-lg-12 mb-4">
-
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Detail Presensi Kehadiran</h6>
+                    <h6 class="m-0 font-weight-bold text-primary d-inline">Detail Presensi Kehadiran</h6>
+                    <a class="btn btn-outline-primary mb-2" href="/admin/{{ $jadwal->id }}/edit"><i class="bi bi-pencil-square"></i> Absen</a>
                 </div>
                 <div class="card-body">
-                    {{-- <div class="row mt-2 mb-3">
-                        <div class="container-fluid">
-                            <form class="d-flex" action="/admin/user" method="get">
-                                <input class="form-control me-2 mr-1" type="search" name="search" placeholder="Cari..." aria-label="Search" value="{{ request('search') }}">
-                                <button class="btn btn-outline-info" type="submit">Cari</button>
-                            </form>
-                        </div>
-                    </div> --}}
                     <div class="table-responsive">
                         <table class="table table-bordered" width="100%" cellspacing="0">
                             <thead>
@@ -123,7 +115,7 @@ use Illuminate\Support\Carbon;
                                     <th>Presensi</th>
                                     <th>Keterangan</th>
                                     <th>Waktu Absen</th>
-                                    <th>Tempat Absen</th>
+                                    {{-- <th>Tempat Absen</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -142,7 +134,7 @@ use Illuminate\Support\Carbon;
                                     @endif
                                     <td>{{ $absensi->keterangan }}</td>
                                     <td>{{ $absensi->waktu_absen ? date('H:i', strtotime($absensi->waktu_absen)) : '' }}  </td>
-                                    <td>{{ $absensi->tempat_absen }}</td>
+                                    {{-- <td>{{ $absensi->tempat_absen }}</td> --}}
                                 </tr>
                                 @endforeach
                             </tbody>
