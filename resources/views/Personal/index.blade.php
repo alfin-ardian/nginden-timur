@@ -4,6 +4,7 @@
 <?php
 use Illuminate\Support\Carbon;
 ?>
+{{-- {{ dd(count($jadwal->absensi)) }} --}}
 <div class="container-fluid mt-4">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Halaman Beranda baru</h1>
@@ -14,7 +15,7 @@ use Illuminate\Support\Carbon;
         {{ session('success') }}
     </div>
     @endif
-    @if(isset($jadwal->absensi))
+    @if(count($jadwal->absensi) > 0)
     <div class="row">
         <div class="col-xl-4 col-lg-7">
             <div class="card mb-4">
@@ -28,6 +29,7 @@ use Illuminate\Support\Carbon;
                   <p class="card-text">{{ $jadwal->pengajar_pertama }} : {{ $jadwal->materi_pertama }}</p>
                   @endif
                   <p> Waktu : {{ $jadwal->jam_mulai }} - {{ $jadwal->jam_selesai }} </p>
+                  @if(count($jadwal->absensi) > 0)
                   @if(isset($jadwal->absensi[0]['waktu_absen']))
                   @if($jadwal->absensi[0]['presensi'] == 'H')
                   <p>Status: <strong>Hadir</strong></p>
@@ -42,6 +44,7 @@ use Illuminate\Support\Carbon;
                   <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modalMd" id="btnLoading">Absen Sekarang</a>
                   @else
                   <a href="#" class="btn btn-warning" data-toggle="modal" data-target="#modalMd" id="btnLoading">Ubah</a>
+                  @endif
                   @endif
                 </div>
                 <div class="card-footer text-muted">
@@ -107,7 +110,9 @@ use Illuminate\Support\Carbon;
                       @if(isset($jadwal->absensi))
                       <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ Auth::user()->id }}">
                       <input type="hidden" class="form-control" id="jadwal_id" name="jadwal_id" value="{{ $jadwal->id }}">
+                      @if(count($jadwal->absensi) > 0)
                       <input type="hidden" class="form-control" id="id" name="id" value="{{ $jadwal->absensi[0]['id'] }}">
+                      @endif
                       @endif
                       <div class="col-md-12 mt-2">
                         <label class="form-label @error('keterangan') is-invalid @enderror">Keterangan</label>

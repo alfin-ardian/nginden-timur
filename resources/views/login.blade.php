@@ -68,10 +68,13 @@
                                                 @enderror
                                         </div>
                                         <button class="btn btn-primary btn-user btn-block" type="submit">Login</button>
-                                        {{-- <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a> --}}
+                                        <hr>
+                                        <p class="tex-white text-center">Atau</p>
+                                        <div class="d-flex items-center justify-content-center">
+                                            <a href="{{ url('auth/google') }}">
+                                                <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png">
+                                            </a>
+                                        </div>
                                     </form>
                                     <hr>
                                     {{-- <div class="text-center">
