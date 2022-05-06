@@ -15,6 +15,7 @@ use Illuminate\Support\Carbon;
         {{ session('success') }}
     </div>
     @endif
+    @if(isset($jadwal))
     @if(count($jadwal->absensi) > 0)
     <div class="row">
         <div class="col-xl-4 col-lg-7">
@@ -54,6 +55,19 @@ use Illuminate\Support\Carbon;
             </div>
         </div>
     </div>
+    @else
+    <div class="row">
+        <div class="col-xl-4 col-lg-7">
+            <div class="card mb-4">
+              <div class="card text-center">
+                <div class="card-body">
+                  <h5 class="card-title">Belum ada jadwal hari ini</h5>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    @endif
     @else
     <div class="row">
         <div class="col-xl-4 col-lg-7">

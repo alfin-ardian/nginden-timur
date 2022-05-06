@@ -163,7 +163,7 @@ class JadwalController extends Controller
      */
     public function destroy(Jadwal $jadwal, Absensi $absensi)
     {
-        Absensi::destroy($jadwal->id);
+        Absensi::where('jadwal_id', $jadwal->id)->delete();
 
         Jadwal::destroy($jadwal->id);
 
